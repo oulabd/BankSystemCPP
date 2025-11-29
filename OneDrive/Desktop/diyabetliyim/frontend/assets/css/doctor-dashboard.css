@@ -1,0 +1,404 @@
+/* frontend/assets/css/doctor-dashboard.css */
+.doctor-header {
+  background: #20caa8;
+  color: white;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doctor-main {
+  padding: 20px;
+}
+
+.dashboard-cards {
+  display: flex;
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  flex: 1;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  position: relative;
+}
+
+.notif-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  min-width: 300px;
+  max-height: 400px;
+  overflow-y: auto;
+  display: none;
+  z-index: 1000;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.notif-item {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.notif-item.unread {
+  background: #f0f8ff;
+}
+
+.notif-message {
+  font-weight: bold;
+}
+
+.notif-meta {
+  font-size: 12px;
+  color: #666;
+}
+
+.notif-actions {
+  margin-top: 5px;
+  display: flex;
+  gap: 5px;
+}
+
+.notif-actions button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.notif-actions button:first-child {
+  background: #20caa8;
+  color: white;
+}
+
+.notif-actions button:nth-child(2) {
+  background: #007bff;
+  color: white;
+}
+
+.notif-actions button:last-child {
+  background: #dc3545;
+  color: white;
+}
+
+.empty {
+  padding: 20px;
+  text-align: center;
+  color: #666;
+}
+
+.patient-list {
+  margin-top: 40px;
+}
+
+.patient-list h2 {
+  margin-bottom: 20px;
+  color: #08343a;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.patient-card {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.patient-card h3 {
+  margin: 0;
+  color: #08343a;
+}
+
+.patient-card p {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.patient-card .status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.patient-card .status.critical_high {
+  background: #e11d48;
+  color: white;
+}
+
+.patient-card .status.risk_low {
+  background: #eab308;
+  color: white;
+}
+
+.patient-card .status.normal {
+  background: #10b981;
+  color: white;
+}
+
+.patient-card .status.none {
+  background: #6b7280;
+  color: white;
+}
+
+.patient-card button {
+  align-self: flex-start;
+  padding: 8px 12px;
+  background: #20caa8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.patient-card button:hover {
+  background: #1aa085;
+}
+
+.unread-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.patient-info-card, .last-record-card, .history-section {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.patient-info-card h2, .last-record-card h2, .history-section h2 {
+  margin-top: 0;
+  color: #08343a;
+}
+
+.patient-info-card p {
+  margin: 5px 0;
+}
+
+.last-record-card .status {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.last-record-card .status.critical_high {
+  background: #e11d48;
+  color: white;
+}
+
+.last-record-card .status.risk_low {
+  background: #eab308;
+  color: white;
+}
+
+.last-record-card .status.normal {
+  background: #10b981;
+  color: white;
+}
+
+.last-record-card .status.none {
+  background: #6b7280;
+  color: white;
+}
+
+.history-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.history-section th, .history-section td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.history-section th {
+  background: #f4f4f4;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.actions button {
+  padding: 10px 20px;
+  background: #20caa8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.actions button:hover {
+  background: #1aa085;
+}
+
+#prescriptionForm {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-row {
+  margin-bottom: 15px;
+}
+
+.form-row label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-row input, .form-row select, .form-row textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.form-actions button {
+  padding: 10px 20px;
+  background: #20caa8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.form-actions button:hover {
+  background: #1aa085;
+}
+
+.item-fields {
+  border: 1px solid #eee;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+/* Lab Request Form */
+#labRequestForm {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #f9f9f9;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin: 0;
+}
+
+.status-gray {
+  background: #ccc;
+  color: #333;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.status-blue {
+  background: #007bff;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.status-green {
+  background: #28a745;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="tr">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title data-i18n="title.patientDashboard">Hasta Paneli - DİYABETLİYİM</title>
+	<link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+	<link rel="stylesheet" href="components/chat.css">
+</head>
+<body>
+	<header class="pd-header">
+		<div class="pd-header-inner">
+			<div class="pd-left">
+				<a href="/" class="logo">DİYABETLİYİM</a>
+			</div>
+			<div class="pd-center">
+				<button class="icon-btn search-btn" aria-label="Search">🔍</button>
+			</div>
+			<div class="pd-right">
+				<div class="dropdown language-dropdown">
+					<button class="icon-btn" id="langBtn" aria-haspopup="true">🌍</button>
+					<div class="dropdown-menu" aria-labelledby="langBtn">
+						<button class="lang-item" data-lang="tr">Türkçe</button>
+						<button class="lang-item" data-lang="en">English</button>
+						<button class="lang-item" data-lang="ar">العربية</button>
+					</div>
+				</div>
+				<div class="dropdown notif-dropdown">
+					<button class="icon-btn" id="notifBtn">🔔</button>
+					<div class="dropdown-menu" aria-labelledby="notifBtn">
+						<div class="empty" data-i18n="notifications.empty">Bildirim yok</div>
+					</div>
+				</div>
+				<div class="dropdown profile-dropdown">
+					<button class="icon-btn" id="profileBtn">👤</button>
+					<div class="dropdown-menu" aria-labelledby="profileBtn">
+						<a href="#" data-i18n="profile.view">Profil</a>
+						<a href="#" data-i18n="profile.edit">Bilgileri Düzenle</a>
+						<a href="#" data-i18n="profile.password">Şifre Değiştir</a>
+						<button id="logoutBtn" data-i18n="profile.logout">Çıkış</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<main class="pd-main">
+		<section class="pd-sidebar">
+			<!-- Sidebar kept for quick access, but primary card grid appears in main content for consistent layout -->
+			<nav class="pd-nav" aria-label="Patient navigation">
+				<ul>
+					<li data-nav="daily"><span class="mc-icon">🩺</span> <span class="mc-title" data-i18n="menu.daily">Günlük Ölçümler</span></li>
+					<li data-nav="history"><span class="mc-icon">📄</span> <span class="mc-title" data-i18n="card.history">Ölçüm Geçmişi &amp; Yazdır</span></li>
+					<li data-nav="appointments"><span class="mc-icon">📅</span> <span class="mc-title" data-i18n="card.appointments">Randevu</span></li>
+					<li data-nav="prescriptions"><span class="mc-icon">💊</span> <span class="mc-title" data-i18n="card.prescriptions">Reçeteler</span></li>
+					<li data-nav="labs"><span class="mc-icon">🔬</span> <span class="mc-title" data-i18n="card.labs">Laboratuvar</span></li>
+					<li data-nav="logs"><span class="mc-icon">📋</span> <span class="mc-title" data-i18n="logs.title">Medical Logs</span></li>
+					<li data-nav="carb"><span class="mc-icon">🍞</span> <span class="mc-title" data-i18n="card.carb">Karbonhidrat Hesaplayıcı</span></li>
+					<li data-nav="maps"><span class="mc-icon">📍</span> <span class="mc-title" data-i18n="card.maps">Haritalar</span></li>
+				</ul>
+			</nav>
+		</section>
+
+		<section class="pd-content">
+			<div class="card" id="dailyCard">
+				<h2 data-i18n="daily.title">Günlük Glikoz Ölçümleri</h2>
+				<div id="todayRecordArea"></div>
+			</div>
+
+			<div class="card" id="logsCard">
+				<h2 data-i18n="logs.title">Medical Logs</h2>
+				<div id="logsArea">
+					<table id="logsTable">
+						<thead>
+							<tr>
+								<th data-i18n="logs.date">Date</th>
+								<th data-i18n="logs.type">Type</th>
+								<th data-i18n="logs.description">Description</th>
+								<th data-i18n="logs.doctor">Doctor</th>
+							</tr>
+						</thead>
+						<tbody id="logsBody">
+							<tr>
+								<td colspan="4" data-i18n="logs.loading">Loading...</td>
+							</tr>
+						</tbody>
+					</table>
+					<button id="downloadReportBtn" style="margin-top: 10px;">📄 Download Medical Report</button>
+				</div>
+			</div>
+	</main>
+
+	<footer class="pd-footer">
+		<svg viewBox="0 0 1200 200" preserveAspectRatio="none" class="wave-svg" aria-hidden>
+			<path d="M0,60 C150,150 350,0 600,60 C850,120 1050,40 1200,80 L1200,200 L0,200 Z" fill="#20caa8"></path>
+		</svg>
+		<div class="footer-content">
+			
+			<p data-i18n="footer.copy">© 2025 DİYABETLİYİM</p>
+		</div>
+	</footer>
+
+	<script src="../assets/js/i18n.js" defer></script>
+	<script src="../assets/js/patient-dashboard.js" defer></script>
+	<script src="components/chat.js" defer></script>
+</body>
+</html>

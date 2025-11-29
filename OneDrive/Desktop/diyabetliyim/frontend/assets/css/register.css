@@ -1,0 +1,284 @@
+/* Register page styles - consistent with homepage */
+*{box-sizing:border-box}
+:root{
+	--grad-start:#20caa8;
+	--grad-end:#2eb2a6;
+	--white:#ffffff;
+	--muted:#6b8896;
+	--card-bg:#ffffff;
+	--shadow: 0 10px 30px rgba(22,45,60,0.08);
+	--error:#b00020;
+}
+html,body{height:100%}
+body{
+	margin:0;
+	font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	background: linear-gradient(180deg, var(--grad-start), var(--grad-end));
+	display:flex;align-items:flex-start;justify-content:center;padding:28px 28px 48px; /* leave space at top for absolute header */
+}
+
+/* Allow the page to scroll vertically when content exceeds viewport */
+body{overflow-y:auto}
+
+/* Make auth container fluid so the page grows with the form instead of forcing internal scrolling */
+.auth-page{min-height:auto}
+
+/* Header / Navbar visual match */
+.navbar {
+    width: 100%;
+    padding: 25px 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    color: #fff;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* Language dropdown (already added) */
+.lang-switcher { position: relative; }
+.lang-dropdown { display: none; position: absolute; top: 110%; right: 0; background: #fff; border-radius: 6px; box-shadow: 0 6px 18px rgba(0,0,0,0.12); min-width: 140px; z-index:20; }
+.lang-dropdown.show { display:block; }
+.lang-dropdown a { display:block; padding:10px 14px; color:#1e90ff; text-decoration:none; font-size:14px; font-weight:600; }
+.lang-dropdown a:hover { background:#e6f4ff }
+.lang-dropdown a.active { background:#d6ecff; color:#004a99 }
+
+.field{margin:12px 0;position:relative}
+.field label{display:block;color:#123345;font-size:14px;margin-bottom:6px}
+.field input[type=text],.field input[type=email],.field input[type=password],.field input[type=date]{width:100%;padding:12px 14px;border:1px solid #e6f4f1;border-radius:10px;background:#fbfffe;transition:box-shadow .18s ease,border-color .18s ease}
+.field input::placeholder{color:#9fbab3}
+.field input:hover{border-color:#cfeee6}
+.field input:focus{outline:none;box-shadow:0 6px 18px rgba(46,178,166,0.12);border-color:var(--grad-end)}
+
+.field.with-icon input{padding-left:44px}
+.field .icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
+
+.field.checkbox{display:flex;align-items:center}
+.checkbox input[type="checkbox"]{width:16px;height:16px}
+
+.form-error{color:var(--error);margin:8px 0}
+.error{color:var(--error);font-size:13px;height:18px;margin-top:6px}
+
+.btn{display:inline-block;padding:12px 18px;background:linear-gradient(90deg,var(--grad-start),var(--grad-end));color:var(--white);border-radius:10px;border:0;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(46,178,166,0.18);transition:transform .12s ease}
+.btn:hover{transform:translateY(-2px)}
+
+.link{color:var(--grad-start);text-decoration:none;font-weight:600}
+
+.captcha-wrapper{display:flex;flex-direction:column;align-items:center;justify-content:center;margin:6px 0 0 0}
+.captcha-wrapper .g-recaptcha{transform:scale(1);transform-origin:center}
+
+/* RTL support */
+body[dir="rtl"]{direction:rtl}
+body[dir="rtl"] .field .icon{right:12px;left:auto}
+body[dir="rtl"] .field.with-icon input{padding-right:44px;padding-left:14px}
+body[dir="rtl"] .lang-row{justify-content:flex-start}
+
+/* responsive */
+@media (max-width:520px){
+	body{padding:12px 12px 28px}
+	.navbar{padding:12px 16px}
+	.form-card{padding:20px;margin:12px}
+	.field input{padding:10px}
+	.btn{width:100%;padding:12px}
+}
+
+/* Shared tokens */
+:root{
+	--grad-start: #20caa8;
+	--grad-end: #2eb2a6;
+	--white: #ffffff;
+	--muted: #6b8896;
+	--card-bg: #ffffff;
+	--shadow: 0 12px 30px rgba(22,45,60,0.08);
+	--error: #b00020;
+	--success: #1e9a5a;
+	--max-width: 1100px;
+}
+
+
+
+/* Hero and card layout */
+.hero{width:100%;max-width:var(--max-width);display:flex;align-items:stretch;position:relative;padding:40px 24px;margin-top:84px}
+.hero-left{width:60%;padding:28px 24px;color:var(--white);display:flex;flex-direction:column;justify-content:center;gap:14px}
+.hero-left h1{font-size:34px;margin:0}
+.hero-video{position:absolute;right:0;top:0;width:40%;height:100%;object-fit:cover;border-left:1px solid rgba(255,255,255,0.04)}
+
+.form-card{background:var(--card-bg);border-radius:16px;box-shadow:var(--shadow);padding:18px;max-width:940px;height:auto;overflow:visible}
+.form-card h1{margin:0 0 8px;font-size:20px;color:#123}
+
+/* Reserve space for reCAPTCHA so loading doesn't shift content */
+.form-card .captcha-wrapper{min-height:76px;display:flex;align-items:center;justify-content:center}
+
+/* Arrange registration form fields in two columns on wider screens */
+.form-card form{
+	display: grid;
+	/* Four columns on wide screens */
+	grid-template-columns: repeat(4, 1fr);
+	gap: 14px 18px;
+	align-items: start;
+}
+
+/* Make title, language selector, error messages, captcha and submit span both columns */
+.form-card h1{grid-column:1 / -1}
+
+.lang-row{grid-column:1 / -1;display:flex;justify-content:flex-end}
+.form-error{grid-column:1 / -1}
+.form-success{grid-column:1 / -1}
+.captcha-wrapper{grid-column:1 / -1}
+.form-card button.btn{grid-column:1 / -1}
+
+/* Some fields should take full width (address, comments) */
+#address {grid-column:1 / -1}
+
+/* Ensure each .field fills its grid cell */
+.form-card .field{width:100%;}
+
+/* Form fields */
+.field{margin:12px 0;position:relative}
+.field label{display:block;color:#123345;font-size:14px;margin-bottom:6px}
+.field input[type=text],.field input[type=email],.field input[type=password],.field input[type=date]{width:100%;padding:12px 14px;border:1px solid rgba(20,60,60,0.06);border-radius:10px;background:#fbfffe;transition:box-shadow .16s ease,border-color .16s ease}
+.field input::placeholder{color:#9fbab3}
+.field input:hover{border-color:rgba(18,120,110,0.12)}
+.field input:focus{outline:none;box-shadow:0 8px 24px rgba(46,178,166,0.12);border-color:var(--grad-end)}
+.field.with-icon input{padding-left:44px}
+.field .icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
+
+.field.checkbox{display:flex;align-items:center}
+.checkbox input[type="checkbox"]{width:18px;height:18px}
+
+.form-error{color:var(--error);margin:8px 0}
+.error{color:var(--error);font-size:13px;height:18px;margin-top:6px}
+.form-success{color:var(--success);margin:8px 0}
+
+.btn{display:inline-block;padding:12px 18px;background:linear-gradient(90deg,var(--grad-start),var(--grad-end));color:var(--white);border-radius:10px;border:0;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(46,178,166,0.18);transition:transform .12s ease}
+.btn:hover{transform:translateY(-2px)}
+
+.link{color:var(--grad-start);text-decoration:none;font-weight:600}
+
+.captcha-wrapper{display:flex;flex-direction:column;align-items:flex-start;margin:6px 0 0 0}
+.captcha-wrapper .g-recaptcha{transform:scale(1);transform-origin:left top}
+
+/* RTL support */
+body[dir="rtl"]{direction:rtl}
+body[dir="rtl"] .field .icon{right:12px;left:auto}
+body[dir="rtl"] .field.with-icon input{padding-right:44px;padding-left:14px}
+body[dir="rtl"] .hero-left{text-align:right}
+
+/* responsive */
+@media (max-width:1200px){
+	/* three columns on large tablets / small desktops */
+	.form-card form{grid-template-columns:repeat(3,1fr)}
+}
+
+@media (max-width:980px){
+	/* two columns on tablets */
+	.hero{flex-direction:column;padding:20px;margin-top:60px}
+	.hero-left{width:100%;padding:24px}
+	.hero-video{position:relative;width:100%;height:40vh;border-radius:12px;margin-top:18px}
+	body{padding:72px 16px 28px}
+	.form-card form{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:520px){
+	/* single column on mobile */
+	.form-card form{grid-template-columns:1fr}
+	.form-card{padding:20px;margin-top:48px}
+	.field input{padding:10px}
+	.btn{width:100%;padding:12px}
+	body{padding:64px 12px 24px}
+}
+
+@media (max-width:520px){
+	.form-card{padding:20px}
+	.field input{padding:10px}
+	.btn{width:100%;padding:12px}
+	body{padding:64px 12px 24px}
+}
+
+/* Register page styles - consistent with homepage */
+*{box-sizing:border-box}
+:root{
+	--grad-start:#20caa8;
+	--grad-end:#2eb2a6;
+	--white:#ffffff;
+	--muted:#6b8896;
+	--card-bg:#ffffff;
+	--shadow: 0 10px 30px rgba(22,45,60,0.08);
+	--error:#b00020;
+}
+html,body{height:100%}
+body{
+	margin:0;
+	font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	background: linear-gradient(180deg, var(--grad-start), var(--grad-end));
+	display:flex;align-items:flex-start;justify-content:center;padding:28px 28px 48px; /* leave space at top for absolute header */
+}
+
+
+/* Centered white card */
+.auth-page{width:100%;max-width:860px;margin-top:84px}
+.form-card{background:var(--card-bg);border-radius:16px;box-shadow:var(--shadow);padding:18px;max-width:840px;height:auto;overflow:visible;margin:0 auto}
+.form-card h1{margin:0 0 12px;font-size:22px;color:#123}
+
+.lang-row{display:flex;justify-content:flex-end;margin-bottom:8px}
+.lang-row label{font-size:13px;color:var(--muted);margin-right:8px}
+
+.field{margin:12px 0;position:relative}
+.field label{display:block;color:#123345;font-size:14px;margin-bottom:6px}
+.field input[type=text],.field input[type=email],.field input[type=password],.field input[type=date]{width:100%;padding:12px 14px;border:1px solid #e6f4f1;border-radius:10px;background:#fbfffe;transition:box-shadow .18s ease,border-color .18s ease}
+.field input::placeholder{color:#9fbab3}
+.field input:hover{border-color:#cfeee6}
+.field input:focus{outline:none;box-shadow:0 6px 18px rgba(46,178,166,0.12);border-color:var(--grad-end)}
+
+.field.with-icon input{padding-left:44px}
+.field .icon{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)}
+
+.field.checkbox{display:flex;align-items:center}
+.checkbox input[type="checkbox"]{width:16px;height:16px}
+
+.form-error{color:var(--error);margin:8px 0}
+.error{color:var(--error);font-size:13px;height:18px;margin-top:6px}
+
+.btn{display:inline-block;padding:12px 18px;background:linear-gradient(90deg,var(--grad-start),var(--grad-end));color:var(--white);border-radius:10px;border:0;font-weight:700;cursor:pointer;box-shadow:0 8px 20px rgba(46,178,166,0.18);transition:transform .12s ease}
+.btn:hover{transform:translateY(-2px)}
+
+.link{color:var(--grad-start);text-decoration:none;font-weight:600}
+
+.captcha-wrapper{display:flex;flex-direction:column;align-items:center;justify-content:center;margin:10px 0}
+.captcha-wrapper .g-recaptcha{transform:scale(1);transform-origin:center}
+
+/* RTL support */
+body[dir="rtl"]{direction:rtl}
+body[dir="rtl"] .field .icon{right:12px;left:auto}
+body[dir="rtl"] .field.with-icon input{padding-right:44px;padding-left:14px}
+body[dir="rtl"] .lang-row{justify-content:flex-start}
+
+/* responsive */
+@media (max-width:520px){
+	body{padding:12px 12px 28px}
+	.navbar{padding:12px 16px}
+	.form-card{padding:20px;margin:12px}
+	.field input{padding:10px}
+	.btn{width:100%;padding:12px}
+}
+

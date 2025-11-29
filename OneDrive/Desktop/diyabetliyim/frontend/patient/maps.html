@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title data-i18n="maps.nearby">Haritalar & Acil</title>
+
+    <!-- Shared styles -->
+    <link rel="stylesheet" href="../assets/css/patient-dashboard.css" />
+    <link rel="stylesheet" href="../assets/css/history.css" />
+    <link rel="stylesheet" href="../assets/css/maps.css" />
+
+    <!-- Leaflet + MapTiler implementation (MapTiler key from config.js) -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <script src="../assets/js/i18n.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="../assets/js/maps.js" defer></script>
+  </head>
+
+  <body>
+
+    <!-- Header (history style) -->
+    <header class="page-header">
+      <div class="brand">DİYABETLİYİM</div>
+      <nav class="header-nav">
+        <div class="pd-right">
+          <div class="pd-center"></div>
+          <div class="dropdown language-dropdown pd-lang">
+            <button class="icon-btn" id="langBtn">🌍</button>
+            <div class="dropdown-menu">
+              <button class="lang-item" data-lang="tr">Türkçe</button>
+              <button class="lang-item" data-lang="en">English</button>
+              <button class="lang-item" data-lang="ar">العربية</button>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pd-main">
+
+      <!-- Sidebar -->
+      <aside class="pd-sidebar">
+        <ul class="pd-menu">
+          <li onclick="location.href='patient-dashboard.html'">🩺 <span data-i18n="menu.daily">Günlük Ölçümler</span></li>
+          <li onclick="location.href='history.html'">📄 <span data-i18n="card.history">Ölçüm Geçmişi &amp; Yazdır</span></li>
+          <li onclick="location.href='appointments.html'">📅 <span data-i18n="card.appointments">Randevu</span></li>
+          <li onclick="location.href='prescriptions.html'">💊 <span data-i18n="card.prescriptions">Reçeteler</span></li>
+          <li onclick="location.href='labs.html'">🔬 <span data-i18n="card.labs">Laboratuvar</span></li>
+          <li onclick="location.href='carb.html'">🍞 <span data-i18n="card.carb">Karbonhidrat Hesaplayıcı</span></li>
+          <li class="active" onclick="location.href='maps.html'">📍 <span data-i18n="card.maps">Haritalar</span></li>
+        </ul>
+      </aside>
+
+      <!-- Content -->
+      <section class="pd-content">
+
+       
+
+        <div class="card">
+          <h1 class="card-title" data-i18n="maps.title">Haritalar & Acil</h1>
+
+          <div class="controls-card">
+            <div class="controls-row">
+              <button id="btn-use-location" class="btn btn-primary" data-i18n="maps.useMyLocation">Use my location</button>
+              <select id="city-select" class="input" aria-label="Select city"></select>
+              <button id="btn-find-hospitals" class="btn btn-primary" data-i18n="maps.findHospitals">Find Hospitals</button>
+              <button id="btn-find-pharmacies" class="btn btn-primary" data-i18n="maps.findPharmacies">Find Duty Pharmacy</button>
+            </div>
+          </div>
+
+          <div class="card map-card">
+            <h2 class="card-title" data-i18n="maps.mapTitle">Nearby Map</h2>
+            <div id="map" aria-label="map" role="region"></div>
+            <div id="map-loading" class="map-loading" hidden data-i18n="maps.loading">Yükleniyor...</div>
+          </div>
+
+          <div class="card locations-list" id="results-card">
+            <h3 data-i18n="maps.results">Results</h3>
+            <div style="max-height:260px;overflow:auto;padding-top:8px">
+              <ul id="locations-ul"></ul>
+            </div>
+          </div>
+
+          <button id="call112" class="call-112" data-i18n="maps.callAmbulance">🚑</button>
+        </div>
+
+      </section>
+
+    </main>
+
+  </body>
+</html>

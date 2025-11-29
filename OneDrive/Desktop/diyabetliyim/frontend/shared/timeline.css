@@ -1,0 +1,314 @@
+.timeline-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.timeline-header {
+  margin-bottom: 30px;
+}
+
+.timeline-header h1 {
+  font-size: 28px;
+  color: #111827;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.timeline-header h1 i {
+  color: #20caa8;
+}
+
+.patient-info {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(32, 202, 168, 0.1);
+  margin-bottom: 24px;
+}
+
+.patient-info h2 {
+  font-size: 20px;
+  color: #111827;
+  margin-bottom: 12px;
+}
+
+.patient-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+}
+
+.stat-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #20caa8;
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 11px;
+  color: #6b7280;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.timeline-filters {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(32, 202, 168, 0.1);
+  margin-bottom: 24px;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  flex: 1;
+  min-width: 150px;
+}
+
+.filter-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.filter-group input,
+.filter-group select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.timeline-wrapper {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 2px 8px rgba(32, 202, 168, 0.1);
+}
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e5e7eb;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 24px;
+  padding-left: 20px;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -27px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid;
+  z-index: 1;
+}
+
+.timeline-item.glucose::before { border-color: var(--status-color, #10b981); }
+.timeline-item.prescription::before { border-color: #8b5cf6; }
+.timeline-item.lab::before { border-color: var(--status-color, #6b7280); }
+.timeline-item.note::before { border-color: #3b82f6; }
+.timeline-item.appointment::before { border-color: var(--status-color, #6b7280); }
+.timeline-item.medication::before { border-color: var(--status-color, #8b5cf6); }
+
+.timeline-card {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 16px;
+  border-left: 4px solid;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.timeline-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateX(4px);
+}
+
+.timeline-card.glucose { border-color: var(--status-color, #10b981); }
+.timeline-card.prescription { border-color: #8b5cf6; }
+.timeline-card.lab { border-color: var(--status-color, #6b7280); }
+.timeline-card.note { border-color: #3b82f6; }
+.timeline-card.appointment { border-color: var(--status-color, #6b7280); }
+.timeline-card.medication { border-color: var(--status-color, #8b5cf6); }
+
+.timeline-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.timeline-icon {
+  font-size: 32px;
+  margin-right: 12px;
+}
+
+.timeline-title-group {
+  flex: 1;
+}
+
+.timeline-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+.timeline-description {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.timeline-timestamp {
+  font-size: 12px;
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+.timeline-content {
+  margin-top: 12px;
+}
+
+.glucose-value {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.glucose-value.high { color: #e11d48; }
+.glucose-value.low { color: #eab308; }
+.glucose-value.normal { color: #10b981; }
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+.prescription-items {
+  margin-top: 12px;
+}
+
+.prescription-item {
+  background: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  font-size: 13px;
+}
+
+.prescription-item strong {
+  color: #111827;
+}
+
+.lab-file {
+  margin-top: 12px;
+}
+
+.btn-download {
+  background: #20caa8;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-download:hover {
+  background: #1ba58f;
+  transform: translateY(-1px);
+}
+
+.note-text {
+  background: white;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #374151;
+  margin-top: 8px;
+}
+
+.timeline-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: #9ca3af;
+}
+
+.timeline-empty i {
+  font-size: 64px;
+  margin-bottom: 20px;
+  opacity: 0.3;
+}
+
+.timeline-loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: #9ca3af;
+}
+
+@media (max-width: 768px) {
+  .patient-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .timeline-filters {
+    flex-direction: column;
+  }
+  
+  .timeline {
+    padding-left: 30px;
+  }
+  
+  .timeline::before {
+    left: 10px;
+  }
+  
+  .timeline-item::before {
+    left: -17px;
+  }
+}

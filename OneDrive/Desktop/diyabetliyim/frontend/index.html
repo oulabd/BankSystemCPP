@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Management</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">DİYABETLİYİM</div>
+        <nav>
+            <ul>
+                <li><a href="#" data-i18n="home"></a></li>
+                <li><a href="login.html" data-i18n="login"></a></li>
+                <li><a href="register.html" data-i18n="register"></a></li>
+                <li><a href="#" id="header-video-link" data-video-src="assets/media/فيديو واتساب بتاريخ 2025-11-19 في 12.45.45_53c54122.mp4" data-i18n="video"></a></li>
+                <li><a href="#">🔍</a></li>
+                <li class="lang-switcher">
+                    <a href="#"><i class="fas fa-globe"></i></a>
+                    <div class="lang-dropdown">
+                        <a href="#" data-lang="tr">Türkçe</a>
+                        <a href="#" data-lang="en">English</a>
+                        <a href="#" data-lang="ar">العربية</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+     <section class="hero">
+
+        <div class="hero-left">
+            <h1 data-i18n="bestHealthcare"></h1>
+            <p data-i18n="heroText"></p>
+            <a href="#" id="show-me-btn" class="btn" data-i18n="showMe"></a>
+        </div>
+
+        <video autoplay muted loop playsinline class="hero-video" id="hero-video">
+            <source src="assets/media/6824285-uhd_3840_2160_30fps.mp4" type="video/mp4">
+        </video>
+
+    
+
+        <!-- موجة الشكل -->
+        <svg class="wave" viewBox="0 0 1440 320">
+            <path fill="#ffffff" fill-opacity="1"
+                d="M0,256L48,250.7C96,245,192,235,288,208C384,181,480,139,576,144C672,149,768,203,864,208C960,213,1056,171,1152,170.7C1248,171,1344,213,1392,234.7L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,
+960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+            </path>
+        </svg>
+
+    </section>
+    <script type="module" src="assets/js/videoPreview.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

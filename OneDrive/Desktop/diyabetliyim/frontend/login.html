@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login - Diyabetliyim</title>
+  <link rel="stylesheet" href="assets/css/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google reCAPTCHA v2 -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script type="module" src="assets/js/login.js" defer></script>
+  <script type="module" src="assets/js/auth.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">DİYABETLİYİM</div>
+    <nav>
+      <ul>
+        <li><a href="index.html" data-i18n="home"></a></li>
+        <li><a href="login.html" data-i18n="login"></a></li>
+        <li><a href="register.html" data-i18n="register"></a></li>
+        <li><a href="#" data-i18n="video"></a></li>
+        <li><a href="#">🔍</a></li>
+        <li class="lang-switcher">
+          <a href="#"><i class="fas fa-globe"></i></a>
+          <div class="lang-dropdown">
+            <a href="#" data-lang="tr">Türkçe</a>
+            <a href="#" data-lang="en">English</a>
+            <a href="#" data-lang="ar">العربية</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="auth-page">
+    <section class="form-card">
+      <h1 data-i18n="login">Login</h1>
+      
+      </div>
+
+      <form id="login-form">
+        <div class="field">
+          <label for="identifier" data-i18n="email">Email or National ID</label>
+          <input id="identifier" name="identifier" type="text" placeholder="Email or National ID">
+          <div class="error" id="identifier-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" placeholder="Password">
+          <div class="error" id="password-error"></div>
+        </div>
+
+        <div class="row">
+          <label class="checkbox"><input type="checkbox" name="remember"> Remember me</label>
+          <a class="link" href="#">Forgot password?</a>
+        </div>
+
+        <div class="form-error" id="form-error"></div>
+
+        <!-- reCAPTCHA widget: replace the placeholder with your real site key -->
+        <div class="captcha-wrapper" style="margin:12px 0">
+          <!-- Using Google reCAPTCHA test site key for development -->
+          <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+          <div class="error" id="captcha-error"></div>
+        </div>
+
+        <button class="btn" type="submit">Login</button>
+      </form>
+    </section>
+      
+  </main>
+</body>
+</html>
+

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title data-i18n="presc.pageTitle">Reçeteler</title>
+
+  <!-- Shared Styles -->
+  <link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+  <link rel="stylesheet" href="../assets/css/history.css">
+  <link rel="stylesheet" href="../assets/css/prescriptions.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Global JS + Page JS -->
+  <script>
+    // Ensure prescriptions page defaults to Turkish
+    try { localStorage.setItem('lang','tr'); } catch(e) {}
+  </script>
+  <script src="../assets/js/i18n.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/auth-guard.js" defer></script>
+  <script src="prescriptions-patient.js" defer></script>
+</head>
+
+<body>
+
+  <!-- HEADER (shared) -->
+  <header class="page-header">
+    <div class="brand">DİYABETLİYİM</div>
+    <nav class="header-nav">
+      <div class="pd-right">
+        <div class="pd-center">
+          <button class="icon-btn search-btn" aria-label="Search">🔍</button>
+        </div>
+        <div class="dropdown language-dropdown">
+          <button class="icon-btn" id="langBtn" aria-haspopup="true">🌍</button>
+          <div class="dropdown-menu" aria-labelledby="langBtn">
+            <button class="lang-item" data-lang="tr">Türkçe</button>
+            <button class="lang-item" data-lang="en">English</button>
+            <button class="lang-item" data-lang="ar">العربية</button>
+          </div>
+        </div>
+
+        <div class="dropdown notif-dropdown">
+          <button class="icon-btn" id="notifBtn">🔔</button>
+          <div class="dropdown-menu" aria-labelledby="notifBtn">
+            <div class="empty" data-i18n="notifications.empty">Bildirim yok</div>
+          </div>
+        </div>
+        <div class="dropdown profile-dropdown">
+          <button class="icon-btn" id="profileBtn">👤</button>
+          <div class="dropdown-menu" aria-labelledby="profileBtn">
+            <a href="#" data-i18n="profile.view">Profil</a>
+            <a href="#" data-i18n="profile.edit">Bilgileri Düzenle</a>
+            <a href="#" data-i18n="profile.password">Şifre Değiştir</a>
+            <button id="logoutBtn" data-i18n="profile.logout">Çıkış</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN LAYOUT (from dashboard) -->
+  <main class="pd-main">
+
+    <!-- SIDEBAR (static menu) -->
+    <aside class="pd-sidebar">
+      <ul class="pd-menu">
+        <li onclick="location.href='patient-dashboard.html'">🩺 <span data-i18n="menu.daily">Günlük Ölçümler</span></li>
+        <li onclick="location.href='history.html'">📄 <span data-i18n="card.history">Ölçüm Geçmişi &amp; Yazdır</span></li>
+        <li onclick="location.href='appointments.html'">📅 <span data-i18n="card.appointments">Randevu</span></li>
+        <li class="active" onclick="location.href='prescriptions.html'">💊 <span data-i18n="card.prescriptions">Reçeteler</span></li>
+        <li onclick="location.href='labs.html'">🔬 <span data-i18n="card.labs">Laboratuvar</span></li>
+        <li onclick="location.href='carb.html'">🍞 <span data-i18n="card.carb">Karbonhidrat Hesaplayıcı</span></li>
+        <li onclick="location.href='maps.html'">📍 <span data-i18n="card.maps">Haritalar</span></li>
+      </ul>
+    </aside>
+
+    <!-- PAGE CONTENT -->
+    <section class="pd-content">
+
+      <div class="card title-card">
+        <h1 data-i18n="presc.pageTitle">Reçeteler</h1>
+        <p class="subtitle" data-i18n="presc.subtitle">presc.subtitle</p>
+      </div>
+
+      <!-- Prescriptions List -->
+      <div class="card prescriptions-card">
+        <div class="prescriptions-header">
+          <h2 data-i18n="prescriptions.title">My Prescriptions</h2>
+        </div>
+
+        <div id="prescriptions-list" class="table-wrap">
+          <!-- Prescriptions will be rendered here -->
+        </div>
+
+        <div id="no-prescriptions" class="no-results" data-i18n="prescriptions.noData">No prescriptions found</div>
+      </div>
+
+    </section>
+  </main>
+
+</body>
+</html>

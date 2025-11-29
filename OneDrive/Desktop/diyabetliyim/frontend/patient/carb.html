@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title data-i18n="carb.title">Karbonhidrat Hesaplayıcı</title>
+
+    <link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/history.css">
+    <link rel="stylesheet" href="../assets/css/carb.css">
+
+    <script src="../assets/js/i18n.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+    <script type="module" src="../assets/js/carb.js" defer></script>
+  </head>
+  <body>
+    <header class="page-header">
+      <div class="brand">DİYABETLİYİM</div>
+      <nav class="header-nav">
+        <a class="icon-btn" href="#">🔍</a>
+        <div class="dropdown pd-lang">
+          <button class="icon-btn" id="langBtn">🌍</button>
+          <div class="dropdown-menu">
+            <button class="lang-item" data-lang="tr">Türkçe</button>
+            <button class="lang-item" data-lang="en">English</button>
+            <button class="lang-item" data-lang="ar">العربية</button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pd-main">
+      <aside class="pd-sidebar">
+        <ul class="pd-menu">
+          <li onclick="location.href='patient-dashboard.html'">🩺 <span data-i18n="menu.daily">Günlük Ölçümler</span></li>
+          <li onclick="location.href='history.html'">📄 <span data-i18n="card.history">Ölçüm Geçmişi &amp; Yazdır</span></li>
+          <li onclick="location.href='appointments.html'">📅 <span data-i18n="card.appointments">Randevu</span></li>
+          <li onclick="location.href='prescriptions.html'">💊 <span data-i18n="card.prescriptions">Reçeteler</span></li>
+          <li onclick="location.href='labs.html'">🔬 <span data-i18n="card.labs">Laboratuvar</span></li>
+          <li class="active" onclick="location.href='carb.html'">🍞 <span data-i18n="card.carb">Karbonhidrat Hesaplayıcı</span></li>
+          <li onclick="location.href='maps.html'">📍 <span data-i18n="card.maps">Haritalar</span></li>
+        </ul>
+      </aside>
+
+      <section class="pd-content">
+        <div class="card title-card">
+          <h1 data-i18n="carb.title">Karbonhidrat Hesaplayıcı</h1>
+          <p class="subtitle" data-i18n="carb.subtitle">carb.subtitle</p>
+        </div>
+
+        <div class="card form-card">
+          <div class="carb-form">
+            <div class="field">
+              <label for="food-search" data-i18n="carb.search">Ara</label>
+              <input id="food-search" list="food-list" class="form-input" placeholder="Elma, pirinç, muz..." aria-label="Food search">
+              <datalist id="food-list"></datalist>
+            </div>
+
+            <div class="field">
+              <label for="unit-select" data-i18n="carb.unit">Birim</label>
+              <select id="unit-select" class="form-input">
+                <option value="g" data-i18n="carb.unit.g">g</option>
+                <option value="pcs" data-i18n="carb.unit.pcs">pcs</option>
+                <option value="tablespoon" data-i18n="carb.unit.tbsp">Tablespoon</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="qty-input" data-i18n="carb.qty">Miktar</label>
+              <input id="qty-input" type="number" min="0" step="0.1" class="form-input" value="1">
+            </div>
+
+            <div class="actions">
+              <button id="add-food" class="btn btn-primary" data-i18n="carb.add">Ekle</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card results-card">
+          <h2 class="pd-card-title" data-i18n="carb.foodLibrary">Yiyecek Kütüphanesi</h2>
+          <div id="added-list" class="added-list">
+            <!-- JS will render added items here -->
+          </div>
+
+          <div class="total-row">
+            <div class="total-label" data-i18n="carb.totalLabel">Toplam Karbonhidrat:</div>
+            <div id="total-value" class="total-value">0 g</div>
+          </div>
+
+        </div>
+      </section>
+    </main>
+
+  </body>
+</html>

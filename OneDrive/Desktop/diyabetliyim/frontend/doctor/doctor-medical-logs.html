@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="logs.title">Medical Logs - DİYABETLİYİM</title>
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+</head>
+<body>
+    <header class="doctor-header">
+        <h1 data-i18n="logs.title">Medical Logs</h1>
+        <button onclick="window.history.back()">Back</button>
+    </header>
+
+    <main class="doctor-main">
+        <div class="card">
+            <h2 data-i18n="logs.create">Create Medical Log</h2>
+            <form id="logForm">
+                <div class="form-row">
+                    <label data-i18n="logs.type">Log Type:</label>
+                    <select id="type" required>
+                        <option value="prescription" data-i18n="logs.type.prescription">Prescription</option>
+                        <option value="lab_request" data-i18n="logs.type.lab_request">Lab Request</option>
+                        <option value="adjustment" data-i18n="logs.type.adjustment">Insulin Adjustment</option>
+                        <option value="diagnosis" data-i18n="logs.type.diagnosis">Diagnosis</option>
+                        <option value="comment" data-i18n="logs.type.comment">Comment</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label data-i18n="logs.description">Description:</label>
+                    <textarea id="description" rows="4" required></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" data-i18n="logs.create">Create Log</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2 data-i18n="logs.history">Log History</h2>
+            <div class="filter-row">
+                <label data-i18n="logs.filter">Filter by Type:</label>
+                <select id="filterType">
+                    <option value="">All</option>
+                    <option value="prescription" data-i18n="logs.type.prescription">Prescription</option>
+                    <option value="lab_request" data-i18n="logs.type.lab_request">Lab Request</option>
+                    <option value="adjustment" data-i18n="logs.type.adjustment">Insulin Adjustment</option>
+                    <option value="diagnosis" data-i18n="logs.type.diagnosis">Diagnosis</option>
+                    <option value="comment" data-i18n="logs.type.comment">Comment</option>
+                </select>
+            </div>
+            <table id="logsTable">
+                <thead>
+                    <tr>
+                        <th data-i18n="logs.date">Date</th>
+                        <th data-i18n="logs.type">Type</th>
+                        <th data-i18n="logs.description">Description</th>
+                        <th data-i18n="logs.doctor">Doctor</th>
+                    </tr>
+                </thead>
+                <tbody id="logsBody">
+                    <tr>
+                        <td colspan="4" data-i18n="logs.loading">Loading...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="/assets/js/auth-guard.js"></script>
+    <script>protectPage('doctor');</script>
+    <script src="../assets/js/i18n.js" defer></script>
+    <script src="doctor-medical-logs.js" defer></script>
+</body>
+</html>

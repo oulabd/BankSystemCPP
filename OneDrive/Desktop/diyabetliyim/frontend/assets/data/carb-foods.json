@@ -1,0 +1,7 @@
+{
+  "apple": { "g": 14, "pcs": 19, "tablespoon": 0 },
+  "rice": { "g": 28, "pcs": 0, "tablespoon": 6 },
+  "banana": { "g": 23, "pcs": 27, "tablespoon": 0 },
+  "bread": { "g": 49, "pcs": 0, "tablespoon": 0 },
+  "milk": { "g": 5, "pcs": 0, "tablespoon": 1 }
+}

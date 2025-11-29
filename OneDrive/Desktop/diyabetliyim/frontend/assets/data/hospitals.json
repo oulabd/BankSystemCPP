@@ -1,0 +1,7 @@
+[
+  {"id":1,"name":{"tr":"Acıbadem Hastanesi","en":"Acibadem Hospital","ar":"مستشفى أجيبادم"},"city":"Istanbul","lat":41.0082,"lng":28.9784,"phone":"+90-212-123-4567","rating":4.5},
+  {"id":2,"name":{"tr":"Ankara Şehir Hastanesi","en":"Ankara City Hospital","ar":"مستشفى أنقرة"},"city":"Ankara","lat":39.9208,"lng":32.8541,"phone":"+90-312-234-5678","rating":4.2},
+  {"id":3,"name":{"tr":"Ege Üniversitesi Hastanesi","en":"Ege University Hospital","ar":"مستشفى جامعة إجه"},"city":"Izmir","lat":38.4127,"lng":27.1384,"phone":"+90-232-345-6789","rating":4.3},
+  {"id":4,"name":{"tr":"Gaziantep Bölge Hastanesi","en":"Gaziantep Regional Hospital","ar":"مستشفى غازي عنتاب"},"city":"Gaziantep","lat":37.0628,"lng":37.3795,"phone":"+90-342-456-7890","rating":4.0},
+  {"id":5,"name":{"tr":"Adana Şehir Hastanesi","en":"Adana City Hospital","ar":"مستشفى أضنة"},"city":"Adana","lat":37.0017,"lng":35.3289,"phone":"+90-322-567-8901","rating":3.9}
+]

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title data-i18n="prescriptions.title">Prescriptions</title>
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/prescriptions.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="../assets/js/i18n.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+    <script src="prescriptions-doctor.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="page-header">
+      <div class="brand">DİYABETLİYİM</div>
+      <nav class="header-nav">
+        <a class="icon-btn" href="#">🔍</a>
+        <div class="dropdown pd-lang">
+          <button class="icon-btn" id="langBtn">🌍</button>
+          <div class="dropdown-menu">
+            <button class="lang-item" data-lang="tr">Türkçe</button>
+            <button class="lang-item" data-lang="en">English</button>
+            <button class="lang-item" data-lang="ar">العربية</button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pd-main">
+
+      <!-- Sidebar -->
+      <aside class="pd-sidebar">
+        <ul class="pd-menu">
+          <li onclick="location.href='doctor-dashboard.html'">🏥 <span data-i18n="menu.dashboard">Dashboard</span></li>
+          <li onclick="location.href='doctor-patients.html'">👥 <span data-i18n="menu.patients">Patients</span></li>
+          <li class="active" onclick="location.href='prescriptions-doctor.html'">💊 <span data-i18n="menu.prescriptions">Prescriptions</span></li>
+          <li onclick="location.href='doctor-lab-request.html'">🔬 <span data-i18n="menu.labs">Labs</span></li>
+          <li onclick="location.href='doctor-appointments.html'">📅 <span data-i18n="menu.appointments">Appointments</span></li>
+        </ul>
+      </aside>
+
+      <!-- Content -->
+      <section class="pd-content">
+
+        <div class="card title-card">
+          <h1 data-i18n="prescriptions.title">Prescriptions</h1>
+          <button id="createBtn" class="btn btn-primary" data-i18n="prescriptions.new">New Prescription</button>
+        </div>
+
+        <!-- Prescriptions List -->
+        <div class="card prescriptions-card">
+          <div class="prescriptions-header">
+            <h2 data-i18n="prescriptions.list">Prescription History</h2>
+          </div>
+
+          <div id="prescriptions-list" class="table-wrap">
+            <!-- Prescriptions will be rendered here -->
+          </div>
+
+          <div id="no-prescriptions" class="no-results" data-i18n="prescriptions.noData">No prescriptions found</div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Create Prescription Modal -->
+    <div id="createModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 data-i18n="prescriptions.new">New Prescription</h2>
+        <form id="prescriptionForm">
+          <div class="form-group">
+            <label for="patientSelect" data-i18n="prescriptions.patient">Patient:</label>
+            <select id="patientSelect" required>
+              <option value="" data-i18n="common.select">Select Patient</option>
+            </select>
+          </div>
+          <div id="itemsContainer">
+            <div class="item-group">
+              <label data-i18n="prescriptions.item">Item:</label>
+              <input type="text" class="item-name" placeholder="e.g. Lantus" required>
+              <input type="text" class="item-dose" placeholder="e.g. 12 units morning" required>
+              <input type="text" class="item-frequency" placeholder="e.g. daily" required>
+              <select class="item-type" required>
+                <option value="medication" data-i18n="prescriptions.type.medication">Medication</option>
+                <option value="insulin" data-i18n="prescriptions.type.insulin">Insulin</option>
+                <option value="sensor" data-i18n="prescriptions.type.sensor">Sensor</option>
+                <option value="device" data-i18n="prescriptions.type.device">Device</option>
+              </select>
+              <button type="button" class="remove-item" data-i18n="common.remove">Remove</button>
+            </div>
+          </div>
+          <button type="button" id="addItemBtn" data-i18n="prescriptions.addItem">Add Item</button>
+          <div class="form-group">
+            <label for="notes" data-i18n="prescriptions.notes">Notes:</label>
+            <textarea id="notes" rows="3"></textarea>
+          </div>
+          <button type="submit" data-i18n="common.save">Save</button>
+        </form>
+      </div>
+    </div>
+
+</body>
+</html>

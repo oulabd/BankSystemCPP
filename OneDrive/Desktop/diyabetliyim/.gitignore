@@ -1,0 +1,27 @@
+# === Node.js ===
+node_modules/
+.env
+*.log
+npm-debug.log*
+
+# === OS / VS Code ===
+.DS_Store
+.vscode/
+*.swp
+
+# === Security / Secrets ===
+auth.json
+config.toml
+*.key
+*.pem
+
+# === System files (من جهازك)
+.bash_history
+.gitconfig
+C:\Users\
+AppData/
+
+# === Build ===
+dist/
+build/
+

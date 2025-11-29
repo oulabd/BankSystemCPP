@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title data-i18n="appointments.title">Randevularım</title>
+
+    <!-- Shared Styles (dashboard + history system) -->
+    <link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/history.css">
+    <link rel="stylesheet" href="../assets/css/appointments.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Global JS + Page JS -->
+    <script src="../assets/js/i18n.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+    <script type="module" src="../assets/js/appointments.js" defer></script>
+  </head>
+
+  <body>
+
+    <!-- HEADER (shared) -->
+    <header class="page-header">
+      <div class="brand">DİYABETLİYİM</div>
+      <nav class="header-nav">
+        <a href="#" class="icon-btn">🔍</a>
+        <div class="dropdown pd-lang">
+          <button class="icon-btn" id="langBtn">🌍</button>
+          <div class="dropdown-menu">
+            <button class="lang-item" data-lang="tr">Türkçe</button>
+            <button class="lang-item" data-lang="en">English</button>
+            <button class="lang-item" data-lang="ar">العربية</button>
+          </div>
+        </div>
+        <a href="#" class="icon-btn">🔔</a>
+      </nav>
+    </header>
+
+    <!-- LAYOUT -->
+    <main class="pd-main">
+
+      <!-- SIDEBAR -->
+      <aside class="pd-sidebar">
+        <ul class="pd-menu">
+          <li onclick="location.href='patient-dashboard.html'">🩺 <span data-i18n="menu.daily">Günlük Ölçümler</span></li>
+          <li onclick="location.href='history.html'">📄 <span data-i18n="card.history">Ölçüm Geçmişi &amp; Yazdır</span></li>
+          <li class="active" onclick="location.href='appointments.html'">📅 <span data-i18n="card.appointments">Randevu</span></li>
+          <li onclick="location.href='prescriptions.html'">💊 <span data-i18n="card.prescriptions">Reçeteler</span></li>
+					<li data-nav="labs"><span class="mc-icon">🔬</span> <span class="mc-title" data-i18n="card.labs">Laboratuvar</span></li>
+					<li data-nav="carb"><span class="mc-icon">🍞</span> <span class="mc-title" data-i18n="card.carb">Karbonhidrat Hesaplayıcı</span></li>
+					<li data-nav="maps"><span class="mc-icon">📍</span> <span class="mc-title" data-i18n="card.maps">Haritalar</span></li>
+				
+        </ul>
+      </aside>
+
+      <!-- CONTENT -->
+      <section class="pd-content">
+
+        <div class="card title-card">
+          <h1 data-i18n="appointments.title">Randevularım</h1>
+          <p class="subtitle" data-i18n="appointments.subtitle">Yaklaşan randevularınızı yönetin ve yenilerini oluşturun.</p>
+          <div style="margin-top:12px;text-align:right">
+            <button id="btn-request" class="btn btn-primary" data-i18n="appointments.form.submit">Yeni Randevu İste</button>
+          </div>
+        </div>
+
+        <!-- FILTERS -->
+        <div class="card filter-card">
+          <h2 class="pd-card-title" data-i18n="filter.title">Filtrele</h2>
+          <div class="filters">
+            <div class="field">
+              <label for="filter-start" data-i18n="filter.start">Başlangıç tarihi</label>
+              <input id="filter-start" type="date">
+            </div>
+
+            <div class="field">
+              <label for="filter-end" data-i18n="filter.end">Bitiş tarihi</label>
+              <input id="filter-end" type="date">
+            </div>
+
+            <div class="actions">
+              <button id="btn-apply" class="btn btn-primary" data-i18n="filter.apply">Uygula</button>
+              <button id="btn-clear" class="btn btn-outline" data-i18n="filter.clear">Temizle</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="card results-card">
+          <div class="results-header">
+            <h2 data-i18n="appointments.upcoming.title">Yaklaşan Randevular</h2>
+            <div class="results-meta"><span id="results-count">0</span> <span data-i18n="results.count_suffix">kayıt bulundu</span></div>
+          </div>
+
+          <div id="appointments-list" class="appointments-list">
+            <!-- appointments.js will render the table (desktop) and cards (mobile) here -->
+          </div>
+
+          <div id="no-appointments" class="no-results" data-i18n="appointments.msg.noAppointments">Yaklaşan randevu bulunmamaktadır.</div>
+        </div>
+
+      </section>
+
+    </main>
+
+  </body>
+</html>

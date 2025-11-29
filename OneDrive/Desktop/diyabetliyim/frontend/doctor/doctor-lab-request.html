@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor - Lab Request</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+    <script src="../assets/js/i18n.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 data-i18n="doctor.labRequest.title">Lab Request</h1>
+            <button id="backBtn" data-i18n="common.back">Back</button>
+        </header>
+        <main>
+            <form id="labRequestForm">
+                <div class="form-group">
+                    <label for="testName" data-i18n="lab.test_name">Test Name:</label>
+                    <select id="testName" name="testName" required>
+                        <option value="" data-i18n="common.select">Select Test</option>
+                        <option value="Blood Glucose" data-i18n="doctor.labRequest.bloodGlucose">Blood Glucose</option>
+                        <option value="HbA1c" data-i18n="doctor.labRequest.hba1c">HbA1c</option>
+                        <option value="Lipid Profile" data-i18n="doctor.labRequest.lipidProfile">Lipid Profile</option>
+                        <option value="Kidney Function" data-i18n="doctor.labRequest.kidneyFunction">Kidney Function</option>
+                        <option value="Liver Function" data-i18n="doctor.labRequest.liverFunction">Liver Function</option>
+                        <option value="Thyroid" data-i18n="doctor.labRequest.thyroid">Thyroid</option>
+                        <option value="Urine Analysis" data-i18n="doctor.labRequest.urineAnalysis">Urine Analysis</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dueDate" data-i18n="lab.due">Due Date:</label>
+                    <input type="date" id="dueDate" name="dueDate">
+                </div>
+                <div class="form-group">
+                    <label for="notes" data-i18n="doctor.labRequest.notes">Notes:</label>
+                    <textarea id="notes" name="notes" rows="4" data-i18n-placeholder="doctor.labRequest.notesPlaceholder"></textarea>
+                </div>
+                <button type="submit" data-i18n="lab.request">Request Lab Test</button>
+            </form>
+        </main>
+    </div>
+    <script src="doctor-lab-request.js"></script>
+</body>
+</html>

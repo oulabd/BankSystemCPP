@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="doctor.patient_details">Patient Details - DİYABETLİYİM</title>
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+</head>
+<body>
+    <header class="doctor-header">
+        <h1 data-i18n="doctor.patient_details">Patient Details</h1>
+        <button onclick="window.history.back()">Back</button>
+    </header>
+
+    <main class="doctor-main">
+        <section class="patient-info-card">
+            <h2 data-i18n="doctor.info">Patient Info</h2>
+            <div id="patientInfo">Loading...</div>
+        </section>
+
+        <section class="last-record-card">
+            <h2 data-i18n="doctor.last_record">Last Measurement</h2>
+            <div id="lastRecord">Loading...</div>
+        </section>
+
+        <section class="history-section">
+            <h2 data-i18n="doctor.history">Measurement History</h2>
+            <div id="historyTable">Loading...</div>
+        </section>
+
+        <section class="prescriptions-section">
+            <h2 data-i18n="pres.title">Prescriptions</h2>
+            <div id="prescriptionsList">Loading...</div>
+        </section>
+
+        <section class="actions">
+            <button id="addInstructionBtn" data-i18n="doctor.btn.add_instruction">Add Instruction</button>
+            <button id="requestLabBtn" data-i18n="doctor.btn.request_lab">Request Lab</button>
+            <button id="reviewLabBtn" data-i18n="labs.reviewTitle">Review Lab Results</button>
+            <button id="adjustInsulinBtn" data-i18n="insulin.adjust">Adjust Insulin</button>
+            <button id="createPrescriptionBtn" data-i18n="doctor.btn.prescription">Create Prescription</button>
+            <button id="medicalLogsBtn" data-i18n="logs.title">Medical Logs</button>
+            <button id="downloadReportBtn">📄 Download Medical Report</button>
+        </section>
+    </main>
+
+    <script src="/assets/js/auth-guard.js"></script>
+    <script>protectPage('doctor');</script>
+    <script src="../assets/js/i18n.js" defer></script>
+    <script src="doctor-patient-details.js" defer></script>
+</body>
+</html>

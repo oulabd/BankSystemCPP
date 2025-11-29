@@ -1,0 +1,173 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    background-color: #f0f8ff; /* AliceBlue */
+}
+
+/* BASIC RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* NAVBAR */
+.navbar {
+    width: 100%;
+    padding: 25px 50px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar .logo {
+    color: #fff;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.navbar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+/* HERO SECTION */
+.hero {
+    min-height: 100vh;
+    width: 100%;
+    background: linear-gradient(to right, #20caa8, #2eb2a6);
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding-left: 80px;
+    overflow: hidden;
+}
+
+/* النص */
+.hero-left {
+    width: 50%;
+    color: #fff;
+    position: relative;
+    z-index: 3;
+    padding: 4rem;
+}
+
+.hero-left h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.hero-left p {
+    width: 80%;
+    margin-bottom: 25px;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.btn {
+    background: #fff;
+    color: #2ca89e;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* الفيديو */
+.hero-video {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 55%;
+    height: 100vh;
+    object-fit: cover;
+    mix-blend-mode:soft-light; 
+    z-index: 1;
+}
+
+/* الموجة السفلية */
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+
+/* Language dropdown (already added) */
+.lang-switcher { position: relative; }
+.lang-dropdown { display: none; position: absolute; top: 110%; right: 0; background: #fff; border-radius: 6px; box-shadow: 0 6px 18px rgba(0,0,0,0.12); min-width: 140px; z-index:20; }
+.lang-dropdown.show { display:block; }
+.lang-dropdown a { display:block; padding:10px 14px; color:#1e90ff; text-decoration:none; font-size:14px; font-weight:600; }
+.lang-dropdown a:hover { background:#e6f4ff }
+.lang-dropdown a.active { background:#d6ecff; color:#004a99 }
+
+/* RTL support for Arabic */
+body[dir="rtl"] {
+    direction: rtl;
+}
+
+body[dir="rtl"] .hero-left { text-align: right; padding-right: 2rem; }
+body[dir="rtl"] .navbar ul { direction: rtl; }
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .hero-left { width: 100%; padding: 2rem; }
+    .hero-video { width: 100%; height: 50vh; position: relative; }
+    .features { margin: 1rem; }
+}
+
+/* Features (stacked) */
+.features {
+    padding: 2rem 6rem;
+    margin: 0 auto 3rem auto;
+    max-width: 1000px;
+}
+
+.features h2 {
+    margin-bottom: 1rem;
+    color: #123;
+    text-align: center;
+}
+
+.features-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.features-list li {
+    background: #ffffff;
+    padding: 18px 20px;
+    border-radius: 10px;
+    color: #123;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+
+@media (max-width: 600px) {
+    .features { padding: 1rem; }
+    .features-list li { padding: 14px; }
+}
+
+/* Video overlay styles (used by videoPreview.js) */
+.video-overlay { position: fixed; inset: 0; z-index: 9999; display:flex; align-items:center; justify-content:center }
+.video-container { box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+.video-container button { display:flex; align-items:center; justify-content:center }

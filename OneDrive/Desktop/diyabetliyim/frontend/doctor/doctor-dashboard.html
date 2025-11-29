@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="doctor.title">Doctor Dashboard - DİYABETLİYİM</title>
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+</head>
+<body>
+    <header class="doctor-header">
+        <h1 data-i18n="doctor.dashboard">Doctor Dashboard</h1>
+        <div class="header-right">
+            <div class="dropdown notif-dropdown">
+                <button class="icon-btn notif-btn" id="notifBtn">🔔</button>
+                <div class="dropdown-menu" id="notifDropdown">
+                    <div class="empty" data-i18n="notif.empty">No notifications</div>
+                </div>
+            </div>
+            <button id="logoutBtn" data-i18n="logout">Logout</button>
+        </div>
+    </header>
+
+    <main class="doctor-main">
+        <section class="dashboard-cards">
+            <div class="card">
+                <h3 data-i18n="doctor.patients">My Patients</h3>
+                <p id="patientCount">Loading...</p>
+            </div>
+            <div class="card">
+                <h3 data-i18n="doctor.records">Recent Records</h3>
+                <p id="recordCount">Loading...</p>
+            </div>
+        </section>
+
+        <section class="patient-list">
+            <h2 data-i18n="doctor.patients">My Patients</h2>
+            <div id="patientCards" class="cards-container">
+                <!-- Patient cards will be inserted here -->
+            </div>
+        </section>
+
+        <section class="lab-requests">
+            <h2 data-i18n="lab.requests">Lab Requests</h2>
+            <div id="labRequestsList" class="cards-container">
+                <!-- Lab requests will be inserted here -->
+            </div>
+        </section>
+
+        <section class="appointments">
+            <h2 data-i18n="appointments.title">Appointments</h2>
+            <div id="appointmentsList" class="cards-container">
+                <!-- Appointments will be inserted here -->
+            </div>
+        </section>
+    </main>
+
+    <script src="/assets/js/auth-guard.js"></script>
+    <script>protectPage('doctor');</script>
+    <script src="../assets/js/i18n.js" defer></script>
+    <script src="doctor-dashboard.js" defer></script>
+</body>
+</html>

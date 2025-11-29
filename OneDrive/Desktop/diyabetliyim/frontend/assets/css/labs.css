@@ -1,0 +1,129 @@
+/* Labs page styles - reuse tokens from history/dashboard */
+:root{--turquoise:#20caa8;--muted:#6b7280;--card-bg:#ffffff;--radius:12px;--shadow:0 6px 18px rgba(32,202,168,0.12)}
+*{box-sizing:border-box}
+
+/* Panel (modal) */
+#lab-modal{position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);max-width:720px;width:94%;z-index:120}
+#lab-modal .card{padding:18px}
+.pd-panel.hidden{display:none}
+
+/* Filters reuse from history.css */
+.filter-card .filters{display:flex;flex-wrap:wrap;gap:12px;align-items:end}
+.field{display:flex;flex-direction:column;min-width:160px}
+.field label{font-size:13px;color:var(--muted);margin-bottom:6px}
+.field input[type=date]{padding:8px 10px;border:1px solid #e6eef0;border-radius:8px}
+
+/* Results table: reuse history table look */
+.table-wrap{overflow:auto}
+.records-table{width:100%;border-collapse:collapse;font-size:14px}
+.records-table thead th{background:transparent;position:sticky;top:0;text-align:left;padding:10px 12px;border-bottom:1px solid #eef6f5;color:var(--muted)}
+.records-table td{padding:10px 12px;border-bottom:1px solid #f0f6f6;vertical-align:middle}
+.records-table tr:hover td{background:#fbfffe}
+
+/* Status highlight */
+.lab-value{font-weight:700}
+.lab-high{background:rgba(255,204,204,0.6);border-radius:8px;padding:6px}
+.lab-low{background:rgba(255,249,196,0.8);border-radius:8px;padding:6px}
+.lab-normal{background:transparent;padding:6px}
+
+/* Action buttons */
+.records-table .actions-cell{display:flex;gap:8px;align-items:center}
+.action-view{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:6px 8px;border-radius:8px}
+.action-download{background:transparent;border:1px solid rgba(15,23,42,0.06);padding:6px 8px;border-radius:8px}
+.action-delete{background:#fff5f5;color:#e11d48;border-radius:8px;padding:6px 8px;border:1px solid rgba(225,29,72,0.06)}
+.action-print{background:#f0fffb;color:var(--turquoise);border-radius:8px;padding:6px 8px;border:1px solid rgba(32,202,168,0.08)}
+
+/* Mobile cards */
+.cards-grid-list{display:none}
+.card-item{display:block;padding:12px;border-radius:12px;background:var(--card-bg);box-shadow:var(--shadow);margin-bottom:12px}
+.card-item .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.card-item .label{font-size:12px;color:var(--muted)}
+.card-item .value{font-weight:600}
+.card-item .card-actions{display:flex;gap:8px}
+
+/* Test name and result layout for mobile cards */
+.card-item .test-name{font-size:16px;font-weight:700;color:var(--turquoise);margin-bottom:8px}
+.card-item .result-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:8px}
+.card-item .result-value{font-weight:700}
+.card-item .result-ref{font-size:13px;color:var(--muted)}
+.card-item .card-meta{font-size:13px;color:var(--muted);margin-bottom:8px}
+.card-item .card-notes{font-size:13px;color:#0f172a;margin-bottom:8px}
+
+/* Lab Request Cards */
+.lab-request-card {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: #fff;
+}
+
+.request-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.request-header h3 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-requested {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status-uploaded {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.status-reviewed {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.request-details p {
+  margin: 4px 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.request-actions {
+  margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.doctor-comment {
+  margin-top: 8px;
+  padding: 8px;
+  background: #f9fafb;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* responsive behavior */
+@media (max-width:799px){
+  .table-wrap{display:none}
+  .cards-grid-list{display:block}
+  .filters{flex-direction:column;align-items:stretch}
+}
+
+/* Print rules */
+@media print{
+  body{background:#fff;color:#000}
+  .page-header,.pd-sidebar,.filter-card,.action-view,.action-download,.action-delete,.btn{display:none}
+  .card{box-shadow:none;border-radius:0}
+  .records-table th, .records-table td{padding:6px;font-size:12px}
+}

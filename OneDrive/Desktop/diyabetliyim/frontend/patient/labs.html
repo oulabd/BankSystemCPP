@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title data-i18n="labs.title">Laboratuvar Sonuçları</title>
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/history.css">
+    <link rel="stylesheet" href="../assets/css/labs.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- JS -->
+    <script src="../assets/js/i18n.js" defer></script>
+    <script src="../assets/js/main.js" defer></script>
+    <script src="lab-requests.js" defer></script>
+  </head>
+
+  <body>
+
+    <!-- Header (shared) -->
+    <header class="page-header">
+      <div class="brand">DİYABETLİYİM</div>
+      <nav class="header-nav">
+        <a class="icon-btn" href="#">🔍</a>
+        <div class="dropdown pd-lang">
+          <button class="icon-btn" id="langBtn">🌍</button>
+          <div class="dropdown-menu">
+            <button class="lang-item" data-lang="tr">Türkçe</button>
+            <button class="lang-item" data-lang="en">English</button>
+            <button class="lang-item" data-lang="ar">العربية</button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="pd-main">
+
+      <!-- Sidebar -->
+      <aside class="pd-sidebar">
+        <ul class="pd-menu">
+           <li onclick="location.href='patient-dashboard.html'">🩺 <span data-i18n="menu.daily">Günlük Ölçümler</span></li>
+          <li onclick="location.href='history.html'">📄 <span data-i18n="card.history">Ölçüm Geçmişi &amp; Yazdır</span></li>
+          <li onclick="location.href='appointments.html'">📅 <span data-i18n="card.appointments">Randevu</span></li>
+          <li onclick="location.href='prescriptions.html'">💊 <span data-i18n="card.prescriptions">Reçeteler</span></li>
+			<li class="active" onclick="location.href='labs.html'">🔬 <span class="mc-title" data-i18n="card.labs">Laboratuvar</span></li>
+					<li data-nav="carb"><span class="mc-icon">🍞</span> <span class="mc-title" data-i18n="card.carb">Karbonhidrat Hesaplayıcı</span></li>
+					<li data-nav="maps"><span class="mc-icon">📍</span> <span class="mc-title" data-i18n="card.maps">Haritalar</span></li>
+				 </ul>
+      </aside>
+
+      <!-- Content -->
+      <section class="pd-content">
+
+        <div class="card title-card">
+          <h1 data-i18n="labs.title">Lab Requests</h1>
+          <p class="subtitle">Doctor-requested lab tests</p>
+        </div>
+
+        <!-- Lab Requests List -->
+        <div class="card results-card">
+          <div class="results-header">
+            <h2 data-i18n="lab.requests">Lab Requests</h2>
+          </div>
+
+          <div id="lab-requests-list" class="table-wrap">
+            <!-- Lab requests will be rendered here -->
+          </div>
+
+          <div id="no-lab-requests" class="no-results">No lab requests found</div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <div id="labsContainer"></div>
+  
+    <script src="/shared/labs.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        labsManager = new LabsManager('labsContainer', 'patient');
+      });
+    </script>
+  </body>
+</html>

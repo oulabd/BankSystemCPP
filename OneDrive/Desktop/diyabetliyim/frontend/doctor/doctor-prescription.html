@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="prescription.title">Create Prescription - DİYABETLİYİM</title>
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+</head>
+<body>
+    <header class="doctor-header">
+        <h1 data-i18n="prescription.title">Create Prescription</h1>
+        <button onclick="window.history.back()">Back</button>
+    </header>
+
+    <main class="doctor-main">
+        <form id="prescriptionForm" class="card">
+            <div class="form-row">
+                <label data-i18n="pres.type">Medication Type:</label>
+                <select id="type" required>
+                    <option value="insulin_long" data-i18n="pres.type.insulin_long">Long Acting Insulin</option>
+                    <option value="insulin_fast" data-i18n="pres.type.insulin_fast">Fast Acting Insulin</option>
+                    <option value="sensor" data-i18n="pres.type.sensor">Glucose Sensor</option>
+                    <option value="drug" data-i18n="pres.type.drug">Other Drug</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label data-i18n="pres.name">Medicine Name:</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="form-row">
+                <label data-i18n="pres.dose">Dose:</label>
+                <input type="text" id="dose" required>
+            </div>
+
+            <div class="form-row">
+                <label data-i18n="pres.freq">Frequency:</label>
+                <input type="text" id="frequency" required>
+            </div>
+
+            <div class="form-row">
+                <label data-i18n="pres.duration">Duration:</label>
+                <input type="text" id="duration" required>
+            </div>
+
+            <div class="form-row">
+                <label data-i18n="pres.notes">Notes:</label>
+                <textarea id="notes" rows="3"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" data-i18n="pres.create">Create Prescription</button>
+            </div>
+        </form>
+    </main>
+
+    <script src="/assets/js/auth-guard.js"></script>
+    <script>protectPage('doctor');</script>
+    <script src="../assets/js/i18n.js" defer></script>
+    <script src="doctor-prescription.js" defer></script>
+</body>
+</html>

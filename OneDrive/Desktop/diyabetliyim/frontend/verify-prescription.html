@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Prescription - DIABETLIYIM</title>
+    <link rel="stylesheet" href="assets/css/prescriptions.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">DIABETLIYIM</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="hero">
+        <div class="container">
+            <h1 data-i18n="prescriptions.verifyTitle">Prescription Verification</h1>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <div id="verification-result">
+                <h2 data-i18n="prescriptions.verifying">Verifying Prescription...</h2>
+                <div class="loading-spinner"></div>
+            </div>
+
+            <div id="prescription-details" style="display: none;">
+                <div class="prescription-header">
+                    <h2 data-i18n="prescriptions.details">Prescription Details</h2>
+                    <div class="status" id="verification-status"></div>
+                </div>
+
+                <div class="prescription-body">
+                    <div class="row">
+                        <span class="label" data-i18n="prescriptions.patient">Patient:</span>
+                        <span class="value" id="patient-name"></span>
+                    </div>
+                    <div class="row">
+                        <span class="label" data-i18n="prescriptions.doctor">Doctor:</span>
+                        <span class="value" id="doctor-name"></span>
+                    </div>
+                    <div class="row">
+                        <span class="label" data-i18n="prescriptions.date">Date:</span>
+                        <span class="value" id="prescription-date"></span>
+                    </div>
+                    <div class="row">
+                        <span class="label" data-i18n="prescriptions.clinic">Clinic:</span>
+                        <span class="value">DIABETLIYIM Medical Center</span>
+                    </div>
+                </div>
+
+                <div class="prescription-items">
+                    <h3 data-i18n="prescriptions.items">Prescription Items</h3>
+                    <div id="items-list"></div>
+                </div>
+
+                <div class="prescription-notes" id="notes-section" style="display: none;">
+                    <h3 data-i18n="prescriptions.notes">Notes</h3>
+                    <p id="prescription-notes"></p>
+                </div>
+
+                <div class="verification-info">
+                    <p><strong data-i18n="prescriptions.verifyCode">Verification Code:</strong> <span id="verify-code"></span></p>
+                    <p><small data-i18n="prescriptions.verifiedOn">This prescription was verified on</small> <span id="verification-time"></span></small></p>
+                </div>
+            </div>
+
+            <div id="error-message" style="display: none;">
+                <h2 data-i18n="prescriptions.verificationFailed">Verification Failed</h2>
+                <p id="error-text" data-i18n="prescriptions.invalidCode">Invalid or expired prescription code.</p>
+                <button class="btn btn-primary" onclick="window.location.reload()" data-i18n="common.tryAgain">Try Again</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/i18n.js"></script>
+    <script src="assets/js/verify-prescription.js"></script>
+</body>
+</html>

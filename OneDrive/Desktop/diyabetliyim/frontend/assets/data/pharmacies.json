@@ -1,0 +1,7 @@
+[
+  {"id":1,"name":{"tr":"Nöbetçi Eczane Beyoğlu","en":"Beyoglu Duty Pharmacy","ar":"صيدلية بي أوغلو"},"city":"Istanbul","lat":41.0359,"lng":28.9852,"phone":"+90-212-222-0001","rating":4.1},
+  {"id":2,"name":{"tr":"Çankaya Nöbetçi Eczane","en":"Cankaya Duty Pharmacy","ar":"صيدلية تشانكايا"},"city":"Ankara","lat":39.9200,"lng":32.8597,"phone":"+90-312-222-0002","rating":4.0},
+  {"id":3,"name":{"tr":"Karşıyaka Nöbetçi Eczane","en":"Karsiyaka Duty Pharmacy","ar":"صيدلية كارشياكا"},"city":"Izmir","lat":38.4600,"lng":27.1287,"phone":"+90-232-222-0003","rating":3.8},
+  {"id":4,"name":{"tr":"Şehitkamil Nöbetçi Eczane","en":"Sehitkamil Duty Pharmacy","ar":"صيدلية شهيدكاميل"},"city":"Gaziantep","lat":37.0620,"lng":37.3780,"phone":"+90-342-222-0004","rating":3.9},
+  {"id":5,"name":{"tr":"Seyhan Nöbetçi Eczane","en":"Seyhan Duty Pharmacy","ar":"صيدلية سيدان"},"city":"Adana","lat":37.0007,"lng":35.3280,"phone":"+90-322-222-0005","rating":4.2}
+]
