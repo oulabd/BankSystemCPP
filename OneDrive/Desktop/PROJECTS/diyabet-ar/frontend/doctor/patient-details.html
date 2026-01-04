@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL;
+</script>
+
+  <title>تفاصيل المريض</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/assets/css/doctor-patient.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <!-- Shared Header -->
+  <header class="pd-header">
+    <div class="pd-header-left">
+      <div class="logo">صديقي السكري</div>
+    </div>
+    <div class="pd-header-right">
+      <button class="icon-btn" id="notifBtn" title="الإشعارات">
+        <i class="fas fa-bell"></i>
+      </button>
+      <!-- Dil değiştirici kaldırıldı -->
+      <div class="profile">
+        <button class="profile-btn">
+          <i class="fas fa-user-circle"></i>
+        </button>
+        <div class="profile-dropdown">
+          <a href="/doctor/dashboard.html">لوحة التحكم</a>
+          <a href="/logout.html">تسجيل الخروج</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="pd-main">
+    <!-- Sidebar -->
+    <aside class="pd-sidebar">
+      <div class="patient-card">
+        <div class="patient-avatar"><i class="fas fa-user-injured"></i></div>
+        <div class="patient-meta">
+          <div id="patientName">...</div>
+          <small id="patientMeta">ID: ...</small>
+        </div>
+      </div>
+      <ul class="sidebar-menu">
+        <li class="doctor-tab active" data-tab="glucose">
+          <i class="fas fa-chart-line"></i>
+          <span>سجل الجلوكوز</span>
+        </li>
+        <li class="doctor-tab" data-tab="notes">
+          <i class="fas fa-notes-medical"></i>
+          <span>ملاحظات الطبيب</span>
+        </li>
+        <li class="doctor-tab" data-tab="prescriptions">
+          <i class="fas fa-prescription"></i>
+          <span>الوصفات</span>
+        </li>
+        <li class="doctor-tab" data-tab="labs">
+          <i class="fas fa-flask"></i>
+          <span>طلبات المختبر</span>
+        </li>
+        <li class="doctor-tab" data-tab="appointments">
+          <i class="fas fa-calendar-check"></i>
+          <span>المواعيد</span>
+        </li>
+        <li class="doctor-tab" data-tab="timeline">
+          <i class="fas fa-history"></i>
+          <span>الجدول الزمني الطبي</span>
+        </li>
+      </ul>
+    </aside>
+
+    <!-- Content -->
+    <main class="pd-content">
+      <!-- Glucose History -->
+      <section id="tab-glucose" class="doctor-section">
+        <div class="card">
+          <div class="card-header">
+            <h2>سجل الجلوكوز</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>التاريخ</th>
+                    <th>صائم</th>
+                    <th>قبل الإفطار</th>
+                    <th>بعد الإفطار</th>
+                    <th>قبل الغداء</th>
+                    <th>بعد الغداء</th>
+                    <th>قبل العشاء</th>
+                    <th>بعد العشاء</th>
+                  </tr>
+                </thead>
+                <tbody id="glucoseTableBody">
+                  <tr><td colspan="8" class="loading">جاري التحميل...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Doctor Notes -->
+      <section id="tab-notes" class="doctor-section hidden">
+        <div class="card">
+          <div class="card-header">
+            <h2>ملاحظات الطبيب</h2>
+          </div>
+          <div class="card-body">
+            <div id="notesList" class="list-gap"></div>
+            <form id="noteForm" class="form">
+              <label for="noteText">أدخل الملاحظة الطبية...</label>
+              <textarea id="noteText" rows="5" placeholder="أدخل الملاحظة الطبية..." required></textarea>
+              <button class="btn-primary" type="submit">حفظ</button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prescriptions -->
+      <section id="tab-prescriptions" class="doctor-section hidden">
+        <div class="card">
+          <div class="card-header">
+            <h2>الوصفات</h2>
+          </div>
+          <div class="card-body">
+            <form id="rxForm" class="form grid-2">
+              <div class="form-group">
+                <label>اسم الدواء</label>
+                <input type="text" id="rxName" placeholder="مثال: هيومالوج" required>
+              </div>
+              <div class="form-group">
+                <label>النوع</label>
+                <select id="rxType">
+                  <option>أنسولين</option>
+                  <option>جهاز استشعار</option>
+                  <option>مضخة</option>
+                  <option>أخرى</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>الجرعة</label>
+                <input type="text" id="rxDose" placeholder="10 وحدات" required>
+              </div>
+              <div class="form-group">
+                <label>التكرار</label>
+                <input type="text" id="rxFreq" placeholder="3 مرات يومياً" required>
+              </div>
+              <div class="form-group">
+                <label>المدة</label>
+                <input type="text" id="rxDuration" placeholder="14 يوم" required>
+              </div>
+              <div class="form-group span-2">
+                <label>ملاحظات</label>
+                <textarea id="rxNotes" rows="3" placeholder="تعليمات خاصة..."></textarea>
+              </div>
+              <div class="form-actions span-2">
+                <button class="btn-primary" id="rxSubmit" type="submit">إنشاء وصفة</button>
+              </div>
+            </form>
+
+            <div class="table-wrap mt">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>الدواء</th>
+                    <th>الجرعة</th>
+                    <th>التكرار</th>
+                    <th>المدة</th>
+                    <th>تاريخ الصرف</th>
+                  </tr>
+                </thead>
+                <tbody id="rxTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lab Requests -->
+      <section id="tab-labs" class="doctor-section hidden">
+        <div class="card">
+          <div class="card-header">
+            <h2>طلبات المختبر</h2>
+          </div>
+          <div class="card-body">
+            <form id="labForm" class="form grid-2">
+              <div class="form-group">
+                <label>اسم الفحص</label>
+                <input type="text" id="labTest" placeholder="HbA1c" required>
+              </div>
+              <div class="form-group">
+                <label>الأولوية</label>
+                <select id="labUrgency">
+                  <option>عادي</option>
+                  <option>عاجل</option>
+                </select>
+              </div>
+              <div class="form-group span-2">
+                <label>ملاحظات / تعليمات</label>
+                <textarea id="labNotes" rows="3" placeholder="يتطلب الصيام، خطط لصباح..."></textarea>
+              </div>
+              <div class="form-actions span-2">
+                <button class="btn-primary" id="labSubmit" type="submit">طلب مختبر</button>
+              </div>
+            </form>
+
+            <div class="table-wrap mt">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>الفحص</th>
+                    <th>الأولوية</th>
+                    <th>الحالة</th>
+                    <th>تاريخ الإنشاء</th>
+                  </tr>
+                </thead>
+                <tbody id="labTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Appointments -->
+      <section id="tab-appointments" class="doctor-section hidden">
+        <div class="card">
+          <div class="card-header">
+            <h2>المواعيد</h2>
+          </div>
+          <div class="card-body">
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>تاريخ الطلب</th>
+                    <th>الحالة</th>
+                    <th>الإجراءات</th>
+                  </tr>
+                </thead>
+                <tbody id="apptTableBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Medical Timeline -->
+      <section id="tab-timeline" class="doctor-section hidden">
+        <div class="card">
+          <div class="card-header">
+            <h2>الجدول الزمني الطبي</h2>
+          </div>
+          <div class="card-body">
+            <div class="timeline" id="timelineList"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/assets/js/doctor-patient.js"></script>
+</body>
+</html>

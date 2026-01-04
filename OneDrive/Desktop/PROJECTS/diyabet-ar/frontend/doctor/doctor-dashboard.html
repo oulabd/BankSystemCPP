@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <script>
+    const API_BASE_URL = "http://localhost:3001";
+    window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة الطبيب - صديقي السكر</title>
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+</head>
+<body>
+    <header class="doctor-header">
+        <div class="header-left">
+            <h1>صديقي السكر</h1>
+        </div>
+        <div class="header-right">
+            <a href="chat.html" class="icon-btn" id="chatBtn" aria-label="محادثة" title="محادثة مع المرضى">💬</a>
+            <button class="icon-btn" id="logoutBtn" onclick="logout()" aria-label="تسجيل الخروج" title="تسجيل الخروج">🚪</button>
+        </div>
+    </header>
+
+        <main class="doctor-main">
+        <!-- Removed dashboard-cards patient card for cleaner layout -->
+
+        <section class="dashboard-unified-card">
+            <!-- Removed instruction modal/button from dashboard -->
+                <div class="dashboard-section">
+                    <h2 style="display: inline-flex; align-items: center; gap: 10px;">
+                        <span>مرضاي</span>
+                        <span class="patient-count-badge" id="patientCount">0</span>
+                    </h2>
+                    <div id="patientCards" class="cards-container">
+                                                <!-- Patient cards will be inserted here -->
+                                                <!-- Modal for virtual patient details -->
+                                                <div id="virtualPatientModal" class="modal" style="display:none;position:fixed;z-index:1000;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,0.4);align-items:center;justify-content:center;">
+                                                    <div class="modal-content" style="background:#fff;padding:24px 18px;border-radius:10px;max-width:400px;width:90%;position:relative;">
+                                                        <button id="closeVirtualModal" style="position:absolute;top:8px;right:12px;font-size:20px;background:none;border:none;cursor:pointer;">&times;</button>
+                                                        <h3 id="modalPatientName">اسم المريض</h3>
+                                                        <div id="modalPatientDetails">تفاصيل</div>
+                                                    </div>
+                                                </div>
+                    </div>
+                </div>
+                <div class="dashboard-section">
+                    <h2>طلبات المختبر</h2>
+                    <div id="labRequestsList" class="cards-container">
+                        <!-- Lab requests will be inserted here -->
+                    </div>
+                </div>
+                <div class="dashboard-section">
+                    <h2>المواعيد</h2>
+                    <div id="appointmentsList" class="cards-container">
+                        <!-- Appointments will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/assets/js/auth-guard.js"></script>
+    <script>protectPage('doctor');</script>
+
+    <script>
+
+</script>
+    <script src="doctor-dashboard.js" defer></script>
+</body>
+</html>

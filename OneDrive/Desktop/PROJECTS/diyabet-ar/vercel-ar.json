@@ -1,0 +1,38 @@
+{
+  "buildCommand": "npm run build:ar",
+  "outputDirectory": "frontend",
+  "functions": {
+    "backend/**/*.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "env": {
+    "NODE_ENV": "production",
+    "VERSION": "arabic",
+    "MONGODB_URI": "@mongodb_uri_ar",
+    "JWT_SECRET": "@jwt_secret",
+    "ENCRYPTION_KEY": "@encryption_key",
+    "FATSECRET_CLIENT_ID": "@fatsecret_client_id",
+    "FATSECRET_CLIENT_SECRET": "@fatsecret_client_secret",
+    "SMTP_EMAIL": "@smtp_email",
+    "SMTP_PASSWORD": "@smtp_password"
+  },
+  "buildEnvironment": {
+    "NODE_ENV": "production"
+  },
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "X-API-Version",
+          "value": "arabic"
+        }
+      ]
+    }
+  ]
+}

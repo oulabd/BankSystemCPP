@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>تقرير طبي / تقرير صحي</title>
+  <link rel="stylesheet" href="report.css">
+</head>
+<body>
+<div class="report">
+  <!-- ...existing code... -->
+    </section>
+  </div>
+  </body>
+  </html>
+  <header class="report-header">
+    <div>
+      <div class="title">تقرير طبي / تقرير صحي</div>
+      <div class="meta">
+        <span>رقم التقرير: <b id="repNo">RP-000123</b></span>
+        <span>التاريخ والوقت: <b id="repDate">28.12.2025 13:45</b></span>
+      </div>
+      <div class="meta">
+        <span>المؤسسة: <b id="repOrg">DİYABETLİYİM Klinik</b></span>
+        <span>القسم/العيادة: <b id="repDept">Endokrinoloji</b></span>
+      </div>
+    </div>
+    <div class="qr-box">
+      <div class="qr">QR</div>
+      <div class="verify">التحقق: <b id="repCode">tdfjlk5j...</b></div>
+    </div>
+  </header>
+
+  <section class="block">
+    <div class="block-title">معلومات المريض</div>
+    <div class="grid">
+      <div><span>الاسم الكامل</span><b id="pName">...</b></div>
+      <div><span>رقم الهوية/جواز السفر</span><b id="pId">...</b></div>
+      <div><span>تاريخ الميلاد</span><b id="pDob">...</b></div>
+      <div><span>الجنس</span><b id="pGender">...</b></div>
+      <div><span>الهاتف</span><b id="pPhone">...</b></div>
+      <div class="full"><span>العنوان</span><b id="pAddress">...</b></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-title">معلومات الطبيب</div>
+    <div class="grid">
+      <div><span>الاسم الكامل</span><b id="dName">...</b></div>
+      <div><span>التخصص</span><b id="dBranch">...</b></div>
+      <div><span>رقم التسجيل</span><b id="dReg">...</b></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="block-title">الشكوى / العرض</div>
+    <div class="text" id="complaint">...</div>
+  </section>
+
+  <section class="block">
+    <div class="block-title">التاريخ الطبي (القصة)</div>
+    <div class="text" id="history">...</div>
+  </section>
+
+  <section class="block">
+    <div class="block-title">الفحص البدني</div>
+    <div class="text" id="exam">...</div>
+  </section>
+
+  <section class="block">
+    <div class="block-title">التشخيصات (ICD-10)</div>
+    <ol class="list" id="diagnoses">
+      <li>...</li>
+    </ol>
+  </section>
+
+  <section class="block">
+    <div class="block-title">التحاليل / نتائج المختبر</div>
+    <table class="table" id="labs">
+      <thead>
+        <tr><th>التحليل</th><th>النتيجة</th><th>الوحدة</th><th>المرجع</th><th>التاريخ</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>HbA1c</td><td>...</td><td>%</td><td>...</td><td>...</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="block">
+    <div class="block-title">العلاج / الخطة</div>
+    <div class="text" id="plan">...</div>
+  </section>
+
+  <section class="block">
+    <div class="block-title">النتيجة / التقييم</div>
+    <div class="text" id="assessment">...</div>
+  </section>
+
+  <footer class="report-footer">
+    <div class="sign">
+      <div>توقيع الطبيب</div>
+      <div class="line"></div>
+      <div class="small" id="doctorStamp">الختم</div>
+    </div>
+    <div class="small note">
+      تم إعداد هذا التقرير بناءً على الفحص والنتائج الحالية.
+    </div>
+  </footer>
+</div>
+
+<button class="print-btn" onclick="window.print()">طباعة</button>

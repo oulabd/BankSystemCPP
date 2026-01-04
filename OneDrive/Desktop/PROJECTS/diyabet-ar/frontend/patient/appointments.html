@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <script>
+  const API_BASE_URL = "http://localhost:3001";
+  window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>مواعيدي</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+  <link rel="stylesheet" href="../assets/css/history.css">
+  <link rel="stylesheet" href="../assets/css/appointments.css">
+  <link rel="stylesheet" href="../assets/css/search.css">
+
+    <style>
+      /* Force Western numerals in Flatpickr input fields */
+      input.flatpickr-input, input[type="text"].flatpickr-input {
+        font-family: Arial, Helvetica, 'Liberation Sans', 'DejaVu Sans', sans-serif !important;
+        font-variant-numeric: normal !important;
+        direction: ltr !important;
+        unicode-bidi: plaintext !important;
+      }
+      .flatpickr-current-month,
+      .flatpickr-monthDropdown-months,
+      .flatpickr-monthDropdown-years,
+      .flatpickr-monthDropdown-month,
+      .flatpickr-monthDropdown-year,
+      .flatpickr-months .flatpickr-month,
+      .flatpickr-monthDropdown-year input,
+      .flatpickr-monthDropdown-month input,
+      .flatpickr-monthDropdown-years input,
+      .flatpickr-current-month input.cur-year {
+        font-family: Arial, Helvetica, 'Liberation Sans', 'DejaVu Sans', sans-serif !important;
+        font-variant-numeric: normal !important;
+        direction: ltr !important;
+        unicode-bidi: plaintext !important;
+      }
+      /* Force Western numerals for all Flatpickr numbers */
+      .flatpickr-calendar * {
+        font-family: Arial, Helvetica, 'Liberation Sans', 'DejaVu Sans', sans-serif !important;
+        font-variant-numeric: normal !important;
+        direction: ltr !important;
+        unicode-bidi: plaintext !important;
+      }
+    </style>
+
+    <!-- Flatpickr CSS/JS for Arabic date picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header class="pd-header">
+  <div class="pd-header-inner">
+    <div class="pd-left">
+      <a href="/" class="logo">أنا مريض سكري</a>
+    </div>
+    <div class="pd-center">
+      <button class="icon-btn search-btn" aria-label="بحث">🔍</button>
+    </div>
+    <div class="pd-right">
+      <button class="icon-btn chat-btn" id="chatBtn" aria-label="محادثة" title="محادثة مع الطبيب">💬</button>
+    </div>
+  </div>
+</header>
+
+<main class="pd-main">
+
+  <!-- SIDEBAR -->
+  <aside class="pd-sidebar">
+    <nav class="pd-nav">
+      <ul>
+        <li data-nav="daily">
+          <span class="mc-icon">🩺</span>
+          <span class="mc-title">القياسات اليومية</span>
+        </li>
+        <li data-nav="history">
+          <span class="mc-icon">📄</span>
+          <span class="mc-title">سجل القياسات</span>
+        </li>
+        <li data-nav="appointments" class="active">
+          <span class="mc-icon">📅</span>
+          <span class="mc-title">مواعيدي</span>
+        </li>
+        <li data-nav="prescriptions">
+          <span class="mc-icon">💊</span>
+          <span class="mc-title">وصفاتي</span>
+        </li>
+        <li data-nav="labs">
+          <span class="mc-icon">🔬</span>
+          <span class="mc-title">نتائج المختبر</span>
+        </li>
+        <li data-nav="carb">
+          <span class="mc-icon">🍞</span>
+          <span class="mc-title">حاسبة الكربوهيدرات</span>
+        </li>
+        <li data-nav="personal-settings">
+          <span class="mc-icon">⚙️</span>
+          <span class="mc-title">الإعدادات الشخصية</span>
+        </li>
+      </ul>
+    </nav>
+
+    <div style="margin-top:32px;text-align:center;">
+      <button id="logoutBtn"
+                    class="btn btn-outline"
+                    style="min-width:120px;font-size:1rem;padding:10px 24px;border-radius:8px;">تسجيل الخروج</button>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <section class="pd-content">
+
+    <div class="card title-card">
+      <h1>مواعيدي</h1>
+      <div style="margin-top:12px;text-align:right">
+        <button id="btn-request"
+                class="btn btn-primary">طلب موعد جديد</button>
+      </div>
+    </div>
+
+    <div class="card results-card">
+      <div id="appointments-list"></div>
+      <div id="no-appointments"
+           class="no-results">لا توجد مواعيد قادمة.</div>
+    </div>
+
+  </section>
+</main>
+
+<!-- MODAL -->
+<div id="request-modal" class="modal hidden" aria-hidden="true">
+  <div class="modal-dialog card">
+
+    <div class="card-header">
+      <h2>طلب موعد جديد</h2>
+      <button id="modal-close" class="icon-btn" aria-label="إغلاق">✖</button>
+    </div>
+
+    <div class="card-body">
+      <form id="appointment-request-form" class="appointment-form">
+
+        <div class="form-group">
+          <label>تاريخ الموعد</label>
+          <input id="requestedDate" type="text" placeholder="اختر التاريخ" autocomplete="off" required>
+          <small>يرجى اختيار تاريخ مستقبلي</small>
+        </div>
+
+        <div class="form-group">
+          <label>الوقت</label>
+          <input id="requestedTime" type="text" placeholder="اختر الوقت" autocomplete="off" required readonly style="background:#f9f9f9;cursor:pointer;">
+          <div id="slot-grid" style="margin:10px 0 0 0;"></div>
+          <small>الأوقات الخضراء متاحة، والأوقات الحمراء محجوزة.</small>
+        </div>
+
+        <div class="form-group">
+          <label>معلومات إضافية (اختياري)</label>
+          <textarea id="note"
+                    rows="4"
+                    maxlength="500"
+                    placeholder="اكتب المعلومات التي تريد إرسالها إلى طبيبك..."></textarea>
+          <small id="char-count">0 / 500</small>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary btn-lg">طلب موعد جديد</button>
+          <button type="button"
+                    id="modal-cancel"
+                    class="btn btn-secondary btn-lg">إلغاء</button>
+        </div>
+
+        <div class="form-note">
+          <small>سيتم إرسال طلب الموعد إلى طبيبك. سيتم الرد عليك في أقرب وقت ممكن.</small>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/auth-guard.js"></script>
+<script src="../assets/js/search.js"></script>
+<script src="../assets/js/appointments.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.flatpickr) {
+      flatpickr("#requestedDate", { dateFormat: "Y-m-d", locale: "ar" });
+      // Removed Flatpickr time picker for #requestedTime to avoid interference with slot grid
+    }
+  });
+</script>
+<script src="settings.js"></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.flatpickr) {
+      flatpickr("#requestedDate", { dateFormat: "Y-m-d", locale: "ar" });
+    }
+  });
+</script>
+</body>
+</html>

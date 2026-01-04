@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL;
+</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مراجعة نتيجة المختبر - صديقي السكر</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+    
+</head>
+<body>
+    <div class="container">
+        <header class="doctor-header">
+            <h1>مراجعة نتيجة المختبر</h1>
+            <div class="header-right">
+                <button id="backBtn" class="back-btn">العودة</button>
+            </div>
+        </header>
+        <main>
+            <div id="labRequests"></div>
+        </main>
+    </div>
+    
+    <script src="lab-review.js"></script>
+</body>
+</html>

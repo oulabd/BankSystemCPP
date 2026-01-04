@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>وصفاتي الطبية</title>
+
+  <!-- Shared Styles -->
+  <link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+  <link rel="stylesheet" href="../assets/css/history.css">
+  <link rel="stylesheet" href="../assets/css/prescriptions.css">
+
+  <link rel="stylesheet" href="../assets/css/search.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Global JS + Page JS -->
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/auth-guard.js" defer></script>
+    <script src="../assets/js/search.js" defer></script>
+  <script src="prescriptions-patient.js" defer></script>
+  <script src="settings.js" defer></script>
+</head>
+
+<body>
+
+  <!-- HEADER (shared) -->
+  <header class="pd-header">
+    <div class="pd-header-inner">
+      <div class="pd-left">
+        <a href="/" class="logo">صديقي سكري</a>
+      </div>
+      <div class="pd-center">
+        <button class="icon-btn search-btn" aria-label="Search">🔍</button>
+      </div>
+      <div class="pd-right">
+        <button class="icon-btn chat-btn" id="chatBtn" aria-label="Chat" title="Chat with Doctor">💬</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT (from dashboard) -->
+  <main class="pd-main">
+
+    <!-- SIDEBAR (static menu) -->
+    <aside class="pd-sidebar">
+      <nav class="pd-nav" aria-label="Patient navigation">
+        <ul>
+          <li data-nav="daily"><span class="mc-icon">🩺</span> <span class="mc-title">القياسات اليومية</span></li>
+          <li data-nav="history"><span class="mc-icon">📄</span> <span class="mc-title">سجل القياسات &amp; طباعة</span></li>
+          <li data-nav="appointments"><span class="mc-icon">📅</span> <span class="mc-title">مواعيدي</span></li>
+          <li data-nav="prescriptions" class="active"><span class="mc-icon">💊</span> <span class="mc-title">وصفاتي الطبية</span></li>
+          <li data-nav="labs"><span class="mc-icon">🔬</span> <span class="mc-title">نتائج المختبر</span></li>
+          <li data-nav="carb"><span class="mc-icon">🍞</span> <span class="mc-title">حاسبة الكربوهيدرات</span></li>
+          <li data-nav="personal-settings">
+            <span class="mc-icon">⚙️</span>
+            <span class="mc-title">الإعدادات الشخصية</span>
+          </li>
+        </ul>
+      </nav>
+      <div style="margin-top:32px;text-align:center;">
+        <button type="button" class="btn btn-outline" id="logoutBtn" style="min-width:120px;font-size:1rem;padding:10px 24px;border-radius:8px;">تسجيل الخروج</button>
+      </div>
+    </aside>
+
+    <!-- PAGE CONTENT -->
+    <section class="pd-content">
+
+      <div class="card title-card">
+        <h1>وصفاتي الطبية</h1>
+      </div>
+
+      <!-- Prescriptions List -->
+      <div class="card prescriptions-card">
+        <div class="prescriptions-header">
+          <h2>وصفاتي الطبية</h2>
+        </div>
+
+        <div id="prescriptions-list"></div>
+        <div id="no-prescriptions" class="no-results">لم يتم العثور على وصفة طبية مسجلة</div>
+      </div>
+
+    </section>
+  </main>
+
+</body>
+</html>

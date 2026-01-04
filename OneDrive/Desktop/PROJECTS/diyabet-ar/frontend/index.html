@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+        <meta charset="UTF-8">
+        <script>
+            const API_BASE_URL = "http://localhost:3001";
+            window.API_BASE = API_BASE_URL + "/api";
+        </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>صديقي السكر</title>
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="icon" href="data:,">
+        <!-- Removed external font-awesome CDN for local dev. Place font-awesome locally if needed. -->
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">صديقي السكر</div>
+        <nav>
+            <ul>
+                <li><a href="#">الصفحة الرئيسية</a></li>
+                <li><a href="login.html">تسجيل الدخول</a></li>
+                <li><a href="register.html">إنشاء حساب</a></li>
+                <li>
+                    <a href="#" id="pdf-button" class="btn-pdf">المستندات</a>
+                </li>
+                <li>
+                    <a href="#" id="header-video-link" data-video-src="assets/media/فيديو واتساب بتاريخ 2025-11-19 في 12.45.45_53c54122.mp4">فيديو</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+     <section class="hero">
+
+
+        <div class="hero-left">
+            <h1>ميزات المنصة</h1>
+            <p>متابعة يومية</p>
+            <p>حساب الكربوهيدرات</p>
+            <p>إدارة المواعيد</p>
+            <p>نتائج المختبر</p>
+            <a href="#" id="show-me-btn" class="btn">عرض</a>
+        </div>
+        <video autoplay muted loop playsinline class="hero-video" id="hero-video">
+            <source src="assets/media/6824285-uhd_3840_2160_30fps.mp4" type="video/mp4">
+        </video>
+
+    
+
+        <svg class="wave" viewBox="0 0 1440 320">
+            <path fill="#ffffff" fill-opacity="1"
+                d="M0,256L48,250.7C96,245,192,235,288,208C384,181,480,139,576,144C672,149,768,203,864,208C960,213,1056,171,1152,170.7C1248,171,1344,213,1392,234.7L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,
+960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+            </path>
+        </svg>
+
+    </section>
+    
+   
+
+    <!-- Footer with Role Selection Buttons -->
+    <footer class="footer-section">
+        <div class="role-buttons-container">
+            <button class="role-btn doctor-btn" id="doctor-btn">
+                <i class="fas fa-stethoscope"></i>
+                <span>انا طبيب </span>
+            </button>
+            <button class="role-btn patient-btn" id="patient-btn">
+                <i class="fas fa-heart"></i>
+                <span>أنا سكري</span>
+            </button>
+        </div>
+    </footer>
+    
+    <!-- PDF Modal -->
+    <div id="pdf-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>المستندات</h2>
+                <span>جدول نسبة الكربوهيدرات الغذائية</span>
+                <button class="modal-close" id="pdf-modal-close">&times;</button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="pdf-grid">
+                    <a href="assets/media/سوبر-ماما-جدول-نسبة-الكربوهيدرات-الغذائيةمن-عيادات-الكرمه (1).pdf?v=2" class="pdf-card" target="_blank">
+                        <i class="fas fa-file-pdf"></i>
+                        
+                        
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+    <script type="module" src="assets/js/videoPreview.js"></script>
+    <script type="module" src="assets/js/pdfModal.js"></script>
+    <script type="module" src="assets/js/roleButtons.js"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

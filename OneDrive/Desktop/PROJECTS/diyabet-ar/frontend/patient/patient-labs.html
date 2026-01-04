@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+  <title>نتائج مختبري</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="/patient/patient-medical.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<header class="navbar">
+  <div class="logo">أنا مريض سكري</div>
+  <nav>
+    <ul>
+      <li><a href="/patient/dashboard.html">لوحة التحكم</a></li>
+      <li><a href="prescriptions.html">الوصفات</a></li>
+      <li><a class="active" href="/patient/patient-labs.html">المختبر</a></li>
+      <li><a href="appointments.html">المواعيد</a></li>
+      <li><a href="/patient/notifications.html">الإشعارات</a></li>
+      <li><a href="/patient/chat.html" class="chat-link" title="محادثة الطبيب">💬 محادثة</a></li>
+    </ul>
+  </nav>
+</header>
+<div class="container">
+  <div class="page-header">
+    <h1><i class="fas fa-flask"></i>المختبر</h1>
+  </div>
+  <div id="labsList">
+    <div class="loading"><i class="fas fa-spinner fa-spin"></i><p>جاري التحميل...</p></div>
+  </div>
+</div>
+<script src="/patient/patient-labs.js"></script>
+</body>
+</html>

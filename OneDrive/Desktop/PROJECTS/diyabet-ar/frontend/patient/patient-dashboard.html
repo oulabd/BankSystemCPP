@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+	<meta charset="utf-8">
+	<script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>لوحة المريض - أنا مصاب بالسكري</title>
+	<link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+	<link rel="stylesheet" href="../assets/css/search.css">
+	<link rel="stylesheet" href="components/chat.css">
+</head>
+<body>
+	<header class="pd-header">
+		<div class="pd-header-inner">
+			<div class="pd-left">
+				<a href="/" class="logo">صديقي السكر</a>
+			</div>
+			<div class="pd-center">
+				<button class="icon-btn search-btn" aria-label="بحث">🔍</button>
+			</div>
+			<div class="pd-right">
+				<button class="icon-btn chat-btn" id="chatBtn" aria-label="محادثة" title="محادثة مع الطبيب">💬</button>
+			</div>
+		</div>
+	</header>
+
+	<main class="pd-main">
+		<section class="pd-sidebar">
+			<!-- Sidebar kept for quick access, but primary card grid appears in main content for consistent layout -->
+			<nav class="pd-nav" aria-label="Patient navigation">
+				<ul>
+					<li data-nav="daily"><span class="mc-icon">🧺</span> <span class="mc-title">القياسات اليومية</span></li>
+					<li data-nav="history"><span class="mc-icon">📄</span> <span class="mc-title">سجل القياسات &amp; طباعة</span></li>
+					<li data-nav="appointments"><span class="mc-icon">📅</span> <span class="mc-title">المواعيد</span></li>
+					<li data-nav="prescriptions"><span class="mc-icon">💊</span> <span class="mc-title">الوصفات الطبية</span></li>
+					<li data-nav="labs"><span class="mc-icon">🔬</span> <span class="mc-title">المختبر</span></li>
+					<li data-nav="carb"><span class="mc-icon">🍞</span> <span class="mc-title">حاسبة الكربوهيدرات</span></li>
+					<li data-nav="personal-settings">
+						<span class="mc-icon">⚙️</span>
+						<span class="mc-title">الإعدادات الشخصية</span>
+					</li>
+				</ul>
+			</nav>
+			<div style="margin-top:32px;text-align:center;">
+							<button type="button" class="btn btn-outline" id="logoutBtn" style="min-width:120px;font-size:1rem;padding:10px 24px;border-radius:8px;">تسجيل الخروج</button>
+						</div>
+		</section>
+
+		<section class="pd-content">
+			<div class="card" id="dailyCard">
+				<!-- unified header wrapper to match other sections -->
+				<div class="card-header">
+					<h2 class="card-title">قياسات الجلوكوز اليومية</h2>
+				</div>
+				<div id="todayRecordArea"></div>
+			</div>
+
+			
+		</section>
+	</main>
+
+
+	<script src="../assets/js/main.js" defer></script>
+	<script src="../assets/js/auth-guard.js" defer></script>
+	<script src="../assets/js/search.js" defer></script>
+	<script src="../assets/js/patient-dashboard.js" defer></script>
+	<script src="settings.js" defer></script>
+	<script src="components/chat.js" defer></script>
+</body>
+</html>

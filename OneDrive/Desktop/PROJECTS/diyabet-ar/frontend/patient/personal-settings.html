@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>الإعدادات الشخصية</title>
+    <link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/search.css">
+        <style>
+            .flatpickr-current-month,
+            .flatpickr-monthDropdown-months,
+            .flatpickr-monthDropdown-years,
+            .flatpickr-monthDropdown-month,
+            .flatpickr-monthDropdown-year,
+            .flatpickr-months .flatpickr-month {
+                font-family: Arial, Helvetica, 'Liberation Sans', 'DejaVu Sans', sans-serif !important;
+                font-variant-numeric: normal !important;
+                direction: ltr !important;
+            }
+            /* Force Western numerals in Flatpickr input fields */
+            input.flatpickr-input, input[type="text"].flatpickr-input {
+                font-family: Arial, Helvetica, 'Liberation Sans', 'DejaVu Sans', sans-serif !important;
+                font-variant-numeric: normal !important;
+                direction: ltr !important;
+                unicode-bidi: plaintext !important;
+            }
+        </style>
+
+    <!-- Flatpickr CSS/JS for Arabic date picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
+</head>
+<body>
+    <header class="pd-header">
+        <div class="pd-header-inner">
+            <div class="pd-left">
+                <a href="/" class="logo">أنا مريض سكري</a>
+            </div>
+            <div class="pd-center">
+                <button class="icon-btn search-btn" aria-label="Search">🔍</button>
+            </div>
+            <div class="pd-right">
+                <button class="icon-btn chat-btn" id="chatBtn" aria-label="Chat" title="Chat with Doctor">💬</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pd-main">
+        <section class="pd-sidebar">
+            <nav class="pd-nav" aria-label="Patient navigation">
+                <ul>
+                    <li data-nav="daily"><span class="mc-icon">🩺</span> <span class="mc-title">القياسات اليومية</span></li>
+                    <li data-nav="history"><span class="mc-icon">📄</span> <span class="mc-title">سجل القياسات</span></li>
+                    <li data-nav="appointments"><span class="mc-icon">📅</span> <span class="mc-title">مواعيدي</span></li>
+                    <li data-nav="prescriptions"><span class="mc-icon">💊</span> <span class="mc-title">وصفاتي الطبية</span></li>
+                    <li data-nav="labs"><span class="mc-icon">🔬</span> <span class="mc-title">نتائج المختبر</span></li>
+                    <li data-nav="carb"><span class="mc-icon">🍞</span> <span class="mc-title">حاسبة الكربوهيدرات</span></li>
+                    <li data-nav="personal-settings" class="active">
+                        <span class="mc-icon">⚙️</span>
+                        <span class="mc-title">الإعدادات الشخصية</span>
+                    </li>
+                </ul>
+            </nav>
+            <div style="margin-top:32px;text-align:center;">
+                <button type="button" class="btn btn-outline" id="logoutBtn" style="min-width:120px;font-size:1rem;padding:10px 24px;border-radius:8px;">تسجيل الخروج</button>
+            </div>
+        </section>
+
+        <section class="pd-content">
+            <div class="card title-card" style="margin-bottom:32px;">
+                <h1 style="font-size:2rem;font-weight:700;margin-bottom:0;">الإعدادات الشخصية</h1>
+            </div>
+            <div class="card form-card" style="margin-bottom:32px;">
+                <form id="personalSettingsForm" class="personal-settings-form">
+                    <div class="form-section">
+                        <h2 class="form-section-title">معلوماتي</h2>
+                        <div class="form-grid">
+                            <div class="field">
+                                <label for="fullName" style="font-weight:600;">الاسم الكامل</label>
+                                <input type="text" id="fullName" name="fullName" class="form-input personal-input" required readonly>
+                            </div>
+                            <div class="field">
+                                <label for="email" style="font-weight:600;">البريد الإلكتروني</label>
+                                <input type="email" id="email" name="email" class="form-input personal-input" required readonly>
+                            </div>
+                            <div class="field">
+                                <label for="identityNumber" style="font-weight:600;">رقم الهوية</label>
+                                <input type="text" id="identityNumber" name="identityNumber" class="form-input personal-input" readonly>
+                            </div>
+                            <div class="field">
+                                <label for="address" style="font-weight:600;">العنوان</label>
+                                <input type="text" id="address" name="address" class="form-input personal-input" readonly>
+                            </div>
+                            <div class="field">
+                                <label for="mobile" style="font-weight:600;">الهاتف</label>
+                                <input type="tel" id="mobile" name="mobile" class="form-input personal-input" readonly>
+                            </div>
+                            <div class="field">
+                                <label for="dob" style="font-weight:600;">تاريخ الميلاد</label>
+                                <input type="text" id="dob" name="dob" class="form-input personal-input" placeholder="اختر التاريخ" readonly autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end;margin-top:24px;">
+                        <button type="button" class="btn btn-secondary" id="editBtn">تعديل</button>
+                        <button type="submit" class="btn btn-primary" id="saveBtn" style="display:none;">حفظ</button>
+                        <button type="button" class="btn btn-danger" id="deleteBtn">حذف الحساب</button>
+                    </div>
+                </form>
+                <!-- Logout button moved to sidebar above -->
+            </div>
+        </section>
+    </main>
+
+
+    <script src="../assets/js/main.js" defer></script>
+    <script src="../assets/js/auth-guard.js" defer></script>
+    <script src="../assets/js/search.js" defer></script>
+    <script src="settings.js" defer></script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        if (window.flatpickr) {
+            flatpickr("#dob", { dateFormat: "Y-m-d", locale: "ar", allowInput: true });
+        }
+    });
+</script>
+</body>
+</html>

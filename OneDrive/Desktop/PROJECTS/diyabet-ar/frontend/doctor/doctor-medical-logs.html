@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <script>
+    const API_BASE_URL = "http://localhost:3001";
+    window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السجلات الطبية - صديقي السكر</title>
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+</head>
+<body>
+    <header class="doctor-header">
+        <h1>السجلات الطبية</h1>
+        <div class="header-right">
+            <button onclick="window.history.back()" class="back-btn">العودة</button>
+        </div>
+    </header>
+
+    <main class="doctor-main">
+        <div class="card">
+            <h2>إنشاء سجل طبي</h2>
+            <form id="logForm">
+                <div class="form-row">
+                    <label>نوع السجل:</label>
+                    <select id="type" required>
+                        <option value="prescription">وصفة</option>
+                        <option value="lab_request">طلب مختبر</option>
+                        <option value="adjustment">تعديل الأنسولين</option>
+                        <option value="diagnosis">تشخيص</option>
+                        <option value="comment">تعليق</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <label>الوصف:</label>
+                    <textarea id="description" rows="4" required></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit">إنشاء سجل</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <h2>سجل التاريخ</h2>
+            <div class="filter-row">
+                <label>تصفية حسب النوع:</label>
+                <select id="filterType">
+                    <option value="">الكل</option>
+                    <option value="prescription">وصفة</option>
+                    <option value="lab_request">طلب مختبر</option>
+                    <option value="adjustment">تعديل الأنسولين</option>
+                    <option value="diagnosis">تشخيص</option>
+                    <option value="comment">تعليق</option>
+                </select>
+            </div>
+            <table id="logsTable">
+                <thead>
+                    <tr>
+                        <th>التاريخ</th>
+                        <th>النوع</th>
+                        <th>الوصف</th>
+                        <th>الطبيب</th>
+                    </tr>
+                </thead>
+                <tbody id="logsBody">
+                    <tr>
+                        <td colspan="4">جارِ التحميل...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script src="/assets/js/auth-guard.js"></script>
+    <script>protectPage('doctor');</script>
+    
+    <script src="doctor-medical-logs.js" defer></script>
+</body>
+</html>

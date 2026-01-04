@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <script>
+  const API_BASE_URL = "http://localhost:3001";
+  window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+  <title>تحليلات المرضى -صديقي السكر</title>
+  <link rel="stylesheet" href="../shared/analytics.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div id="analyticsContainer"></div>
+
+  <script src="../shared/analytics.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      analyticsManager = new AnalyticsManager('analyticsContainer', 'doctor');
+    });
+  </script>
+</body>
+</html>

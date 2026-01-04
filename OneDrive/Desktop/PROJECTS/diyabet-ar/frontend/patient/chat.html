@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محادثة - أنا مريض سكري</title>
+  <link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+  <link rel="stylesheet" href="../assets/css/search.css">
+  <link rel="stylesheet" href="../shared/chat.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script src="settings.js" defer></script>
+</head>
+<body>
+  <header class="pd-header">
+    <div class="pd-header-inner">
+      <div class="pd-left">
+        <a href="/" class="logo">أنا مريض سكري</a>
+      </div>
+      <div class="pd-center">
+        <button class="icon-btn search-btn" aria-label="بحث">🔍</button>
+      </div>
+      <div class="pd-right">
+        <button class="icon-btn chat-btn" id="chatBtn" aria-label="محادثة" title="محادثة مع الطبيب">💬</button>
+       
+        </div>
+       
+      </div>
+    </div>
+  </header>
+
+  <main class="pd-main">
+    <aside class="pd-sidebar">
+      <nav class="pd-nav" aria-label="Patient navigation">
+        <ul>
+          <li data-nav="daily"><span class="mc-icon">🩺</span> <span class="mc-title">القياسات اليومية</span></li>
+          <li data-nav="history"><span class="mc-icon">📄</span> <span class="mc-title">سجل القياسات والطباعة</span></li>
+          <li data-nav="appointments"><span class="mc-icon">📅</span> <span class="mc-title">المواعيد</span></li>
+          <li data-nav="prescriptions"><span class="mc-icon">💊</span> <span class="mc-title">الوصفات</span></li>
+          <li data-nav="labs"><span class="mc-icon">🔬</span> <span class="mc-title">المختبر</span></li>
+          <li data-nav="carb"><span class="mc-icon">🍞</span> <span class="mc-title">حاسبة الكربوهيدرات</span></li>
+          <li data-nav="personal-settings">
+            <span class="mc-icon">⚙️</span>
+            <span class="mc-title">الإعدادات الشخصية</span>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <section class="pd-content">
+      <div id="chatContainer"></div>
+    </section>
+  </main>
+
+
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/auth-guard.js"></script>
+  <script src="../shared/chat.js"></script>
+  <script src="../assets/js/search.js"></script>
+  <script>
+    // Auth guard for patient
+    (function() {
+      const token = localStorage.getItem('authToken') || localStorage.getItem('auth_token');
+      const role = localStorage.getItem('userRole');
+      if (!token || role !== 'patient') {
+        window.location.href = '../login.html';
+        return;
+      }
+    })();
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof ChatManager === 'undefined') {
+        document.getElementById('chatContainer').innerHTML = '<div style="padding: 20px; color: red;">حدث خطأ أثناء تحميل المحادثة: ChatManager is not defined</div>';
+        return;
+      }
+      try {
+        window.chatManager = new ChatManager('chatContainer', 'patient');
+        console.log('تم بدء محادثة المريض');
+      } catch (error) {
+        console.error('تعذر بدء المحادثة:', error);
+        document.getElementById('chatContainer').innerHTML = 
+          '<div style="padding: 20px; color: red;">حدث خطأ أثناء تحميل المحادثة: ' + error.message + '</div>';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <script>
+    const API_BASE_URL = "http://localhost:3001";
+    window.API_BASE = API_BASE_URL + "/api";
+  </script>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- CSP relaxed for local development -->
+  <meta http-equiv="Content-Security-Policy" content="default-src *; connect-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval';">
+  <title>إنشاء حساب - أنا مصاب بالسكري</title>
+  <link rel="stylesheet" href="assets/css/register.css">
+  <link rel="icon" href="data:,">
+  <!-- Removed external font-awesome CDN for local dev. Place font-awesome locally if needed. -->
+  <style>
+    .flatpickr-current-month,
+    .flatpickr-monthDropdown-months,
+    .flatpickr-monthDropdown-years,
+    .flatpickr-monthDropdown-month,
+    .flatpickr-monthDropdown-year,
+    .flatpickr-months .flatpickr-month {
+      font-family: Arial, Helvetica, 'Liberation Sans', 'DejaVu Sans', sans-serif !important;
+      font-variant-numeric: normal !important;
+      direction: ltr !important;
+    }
+  </style>
+  <!-- Flatpickr CSS -->
+  <!-- For local dev, download flatpickr and place in assets/js and assets/css if needed. -->
+  <!-- <link rel="stylesheet" href="assets/css/flatpickr.min.css"> -->
+  <!-- <script src="assets/js/flatpickr.js"></script> -->
+  <!-- <script src="assets/js/flatpickr-tr.js"></script> -->
+  
+
+  <script type="module" src="assets/js/auth.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">أنا مصاب بالسكري</div>
+    <nav>
+      <ul>
+         <li><a href="index.html">الصفحة الرئيسية</a></li>
+         <li><a href="login.html">تسجيل الدخول</a></li>
+         <li><a href="register.html">إنشاء حساب</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="auth-page">
+    <section class="form-card">
+      <h1>إنشاء حساب</h1>
+      
+
+      <form id="register-form">
+       
+        <div class="field">
+          <label for="name">الاسم الكامل</label>
+          <input id="name" name="fullName" type="text" required>
+          <div class="error" id="name-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="nationalId">رقم الهوية الوطنية</label>
+<input id="nationalId" name="identityNumber" type="text" required>
+          <div class="error" id="nationalId-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="dob">تاريخ الميلاد</label>
+          <input id="dob" name="dob" type="text" placeholder="Tarih seçin" autocomplete="off">
+          <div class="error" id="dob-error"></div>
+        </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.flatpickr) {
+        flatpickr("#dob", {
+          dateFormat: "Y-m-d",
+          locale: "tr"
+        });
+      }
+    });
+  </script>
+
+        <div class="field">
+          <label for="address">العنوان</label>
+          <input id="address" name="address" type="text">
+          <div class="error" id="address-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="doctor">الطبيب (اختياري)</label>
+          <input id="doctor" name="doctor" type="text">
+          <div class="error" id="doctor-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="email">البريد الإلكتروني</label>
+          <input id="email" name="email" type="email">
+          <div class="error" id="email-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="password">كلمة المرور</label>
+          <input id="password" name="password" type="password">
+          <div class="error" id="password-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="confirm">تأكيد كلمة المرور</label>
+          <input id="confirm" name="confirm" type="password">
+          <div class="error" id="confirm-error"></div>
+        </div>
+
+       <!-- ====== Agreements Section ====== -->
+              <div class="agreements-section">
+                <div class="agreement-row">
+                  <input type="checkbox" id="agree-terms" name="agreeTerms">
+                  <label for="agree-terms">
+                    أوافق على الشروط والأحكام
+                    <a href="#" id="show-terms">(اقرأ الشروط)</a>
+                  </label>
+                  <div class="error" id="agree-terms-error"></div>
+                </div>
+                <div class="agreement-row">
+                  <input type="checkbox" id="agree-privacy" name="agreePrivacy">
+                  <label for="agree-privacy">
+                    أوافق على سياسة الخصوصية
+                    <a href="#" id="show-privacy">(اقرأ سياسة الخصوصية)</a>
+                  </label>
+                  <div class="error" id="agree-privacy-error"></div>
+                </div>
+              </div>
+       
+
+        <div class="form-error" id="form-error"></div>
+
+
+        <button class="btn" type="submit">إنشاء حساب</button>
+          <div id="terms-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center;">
+            <div class="modal-content">
+              <h2>الشروط والأحكام</h2>
+              <div style="max-height:300px;overflow:auto;">
+                <p>باستخدامك لهذا المنصة، فإنك توافق على الشروط التالية:</p>
+                <ul>
+                  <li><b>الاستخدام لأغراض إعلامية:</b> المعلومات المقدمة في هذه المنصة هي لأغراض إعلامية فقط ولا تعتبر تشخيصًا أو علاجًا طبيًا.</li>
+                  <li><b>لا تغني عن استشارة الطبيب:</b> المحتوى المقدم عبر المنصة لا يغني عن الفحص الطبي أو الاستشارة الصحية المهنية.</li>
+                  <li><b>مسؤولية المستخدم:</b> المستخدم يقر بأن المعلومات التي يقدمها صحيحة وحديثة، وهو مسؤول عن أي نتائج ناتجة عن معلومات خاطئة أو ناقصة.</li>
+                  <li><b>خصوصية البيانات:</b> يتم الحفاظ على سرية البيانات الشخصية والصحية ولا يتم مشاركتها مع أطراف ثالثة. تُستخدم البيانات فقط لتحسين جودة الخدمة وتشغيل النظام.</li>
+                  <li><b>أمان الحساب:</b> المستخدم مسؤول عن الحفاظ على سرية معلومات الحساب. المنصة غير مسؤولة عن أي استخدام غير مصرح به للحساب.</li>
+                  <li><b>إخلاء المسؤولية:</b> المنصة غير مسؤولة عن أي أضرار مباشرة أو غير مباشرة ناتجة عن استخدام النظام.</li>
+                  <li><b>حق التغيير:</b> تحتفظ المنصة بحق تغيير هذه الشروط دون إشعار مسبق.</li>
+                </ul>
+              </div>
+              <button id="close-terms">إغلاق</button>
+            </div>
+          </div>
+          <div id="privacy-modal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:1000;align-items:center;justify-content:center;">
+            <div class="modal-content">
+              <h2>سياسة الخصوصية</h2>
+              <div style="max-height:300px;overflow:auto;">
+                <p>توضح سياسة الخصوصية هذه كيفية جمع واستخدام وحماية البيانات الشخصية والصحية لمستخدمي منصة "أنا مصاب بالسكري".</p>
+                <ol>
+                  <li><b>المعلومات التي يتم جمعها</b><br>
+                    عند استخدامك للمنصة، قد يتم جمع المعلومات التالية:
+                    <ul>
+                      <li>معلومات الهوية (الاسم الكامل، البريد الإلكتروني، إلخ)</li>
+                      <li>معلومات صحية (قياسات سكر الدم، الوصفات الطبية، نتائج المختبر، إلخ)</li>
+                      <li>معلومات الحساب والاستخدام</li>
+                      <li>معلومات تقنية (عنوان IP، نوع المتصفح، نوع الجهاز)</li>
+                    </ul>
+                  </li>
+                  <li><b>أغراض استخدام المعلومات</b><br>
+                    تُستخدم البيانات المجمعة للأغراض التالية:
+                    <ul>
+                      <li>متابعة صحية وتقديم خدمات مخصصة للمستخدم</li>
+                      <li>تسهيل التواصل بين الطبيب والمريض</li>
+                      <li>تحسين أداء النظام وأمانه</li>
+                      <li>الامتثال للمتطلبات القانونية</li>
+                    </ul>
+                  </li>
+                  <li><b>مشاركة البيانات</b><br>
+                    <ul>
+                      <li>لا يتم مشاركة بياناتك الشخصية والصحية مع أطراف ثالثة.</li>
+                      <li>يتمكن فقط الطاقم الطبي المخول ومديرو النظام من الوصول إلى البيانات.</li>
+                      <li>لا يتم مشاركة البيانات مع أي جهة إلا في حال وجود التزام قانوني.</li>
+                    </ul>
+                  </li>
+                  <li><b>أمان البيانات</b><br>
+                    <ul>
+                      <li>يتم تخزين البيانات على خوادم آمنة.</li>
+                      <li>يتم تطبيق إجراءات تقنية وإدارية مثل التشفير والتحكم في الوصول.</li>
+                      <li>يتم اتخاذ جميع التدابير اللازمة لمنع الوصول غير المصرح به.</li>
+                    </ul>
+                  </li>
+                  <li><b>حقوق المستخدم</b><br>
+                    يحق للمستخدم:
+                    <ul>
+                      <li>الوصول إلى بياناته</li>
+                      <li>طلب تصحيح البيانات</li>
+                      <li>حذف الحساب</li>
+                      <li>الاعتراض على معالجة البيانات</li>
+                    </ul>
+                  </li>
+                  <li><b>ملفات تعريف الارتباط (Cookies)</b><br>
+                    قد تستخدم المنصة ملفات تعريف الارتباط لتحسين تجربة المستخدم. لا تحتوي ملفات تعريف الارتباط على بيانات شخصية ويمكن تعطيلها من إعدادات المتصفح.
+                  </li>
+                  <li><b>خصوصية الأطفال</b><br>
+                    لا تجمع المنصة بيانات المستخدمين دون موافقة ولي الأمر إذا كان العمر أقل من 18 سنة.
+                  </li>
+                  <li><b>التغييرات</b><br>
+                    قد يتم تحديث سياسة الخصوصية عند الحاجة. يتم نشر التحديثات عبر المنصة.
+                  </li>
+                  <li><b>التواصل</b><br>
+                    للاستفسار حول سياسة الخصوصية، يرجى التواصل معنا:<br>
+                    📧 info@diyabetliyim.com
+                  </li>
+                </ol>
+              </div>
+              <button id="close-privacy">إغلاق</button>
+            </div>
+          </div>
+              
+            </div>
+          </div>
+          <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              const agreeTerms = document.getElementById('agree-terms');
+              const agreePrivacy = document.getElementById('agree-privacy');
+              const btn = document.querySelector('button[type="submit"]');
+              const agreeTermsError = document.getElementById('agree-terms-error');
+              const agreePrivacyError = document.getElementById('agree-privacy-error');
+              const showTerms = document.getElementById('show-terms');
+              const showPrivacy = document.getElementById('show-privacy');
+              const termsModal = document.getElementById('terms-modal');
+              const privacyModal = document.getElementById('privacy-modal');
+              const closeTerms = document.getElementById('close-terms');
+              const closePrivacy = document.getElementById('close-privacy');
+              if (btn) {
+                btn.addEventListener('click', function(e) {
+                  let valid = true;
+                  if (!agreeTerms.checked) {
+                    agreeTermsError.textContent = 'Devam etmek için lütfen "Şartları ve Koşulları kabul ediyorum" kutusunu işaretleyin veya şartları okuyun.';
+                    agreeTerms.focus();
+                    valid = false;
+                  } else {
+                    agreeTermsError.textContent = '';
+                  }
+                  if (!agreePrivacy.checked) {
+                    agreePrivacyError.textContent = 'Devam etmek için lütfen "Gizlilik Politikasını kabul ediyorum" kutusunu işaretleyin veya gizlilik politikasını okuyun.';
+                    if (valid) agreePrivacy.focus();
+                    valid = false;
+                  } else {
+                    agreePrivacyError.textContent = '';
+                  }
+                  if (!valid) e.preventDefault();
+                });
+              }
+              if (showTerms && termsModal && closeTerms) {
+                showTerms.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  termsModal.style.display = 'flex';
+                });
+                closeTerms.addEventListener('click', function() {
+                  termsModal.style.display = 'none';
+                });
+                termsModal.addEventListener('click', function(e) {
+                  if (e.target === termsModal) termsModal.style.display = 'none';
+                });
+              }
+              if (showPrivacy && privacyModal && closePrivacy) {
+                showPrivacy.addEventListener('click', function(e) {
+                  e.preventDefault();
+                  privacyModal.style.display = 'flex';
+                });
+                closePrivacy.addEventListener('click', function() {
+                  privacyModal.style.display = 'none';
+                });
+                privacyModal.addEventListener('click', function(e) {
+                  if (e.target === privacyModal) privacyModal.style.display = 'none';
+                });
+              }
+            });
+          </script>
+      </form>
+
+      
+  </main>
+  
+</body>
+</html>
+

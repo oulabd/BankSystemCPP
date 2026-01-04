@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <script>
+    const API_BASE_URL = "http://localhost:3001";
+    window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب مختبر - صديقي السكر</title>
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/chat.css">
+</head>
+<body>
+    <header class="doctor-header">
+        <div class="header-left">
+            <h1>طلب مختبر</h1>
+        </div>
+        <div class="header-right">
+            <a href="/doctor/doctor-dashboard.html" class="back-btn-pro" title="العودة">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+        </div>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </header>
+    <main class="doctor-main">
+        <section class="dashboard-unified-card" style="max-width: 600px;">
+            <div class="dashboard-card-content">
+                <form id="labRequestForm">
+                    <div class="form-row">
+                        <label for="testName">اسم الفحص:</label>
+                        <select id="testName" name="testName" required>
+                            <option value="">اختر فحص</option>
+                            <option value="bloodGlucose">سكر الدم</option>
+                            <option value="hba1c">HbA1c</option>
+                            <option value="lipidProfile">فحص الدهون</option>
+                            <option value="kidneyFunction">وظائف الكلى</option>
+                            <option value="liverFunction">وظائف الكبد</option>
+                            <option value="thyroid">الغدة الدرقية</option>
+                            <option value="urineAnalysis">تحليل البول</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="notes">ملاحظات:</label>
+                        <textarea id="notes" name="notes" rows="4" placeholder="يمكنك كتابة معلومات إضافية..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="add-instruction-btn">طلب فحص مختبر</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+    <script src="doctor-lab-request.js"></script>
+</body>
+</html>

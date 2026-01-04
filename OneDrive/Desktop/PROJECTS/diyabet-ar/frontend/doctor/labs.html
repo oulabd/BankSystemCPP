@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>نتائج المختبر - صديقي السكر</title>
+  <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+  <link rel="stylesheet" href="/shared/labs.css">
+  <link rel="stylesheet" href="../assets/css/chat.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* Ensure labs container integrates with doctor dashboard layout */
+    #labsContainer {
+      flex: 1;
+    }
+    
+    .labs-container {
+      background: transparent;
+      padding: 0;
+    }
+    
+    /* Override any conflicting styles */
+    .doctor-main {
+      display: flex;
+      gap: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="doctor-header">
+    <div class="header-left" style="display: flex; align-items: center; gap: 18px;">
+      <h1 style="display:inline; margin: 0; font-size: 28px; font-weight: 600; letter-spacing: 0.5px;">نتائج المختبر</h1>
+    </div>
+   <a href="/doctor/doctor-dashboard.html" class="back-btn-pro" title="العودة" style="margin-bottom: 24px;">
+        <i class="fa fa-arrow-left"></i>
+      </a>
+  </header>
+
+  <main class="doctor-main" style="display: flex; justify-content: center; align-items: flex-start; min-height: 80vh; background: #f8f9fa;">
+    <section style="width: 100%; max-width: 700px; margin: 32px auto 0 auto;">
+      <div id="patientInfoBar" style="margin-bottom: 18px;"></div>
+      <div id="labsContainer">
+        <div id="labsList"></div>
+      </div>
+    </section>
+  </main>
+  
+  
+  <script src="../assets/js/auth-guard.js"></script>
+  <script src="/shared/labs.js"></script>
+  <script>
+    // Protect this page - only doctors can access
+    protectPage('doctor');
+
+    function showPatientInfoBar(patientId) {
+      const infoBar = document.getElementById('patientInfoBar');
+      if (!infoBar) return;
+      let html = `<span style="font-weight:600; color:#17a589;">معرف المريض:</span> <span style="font-family:monospace; color:#34495e;">${patientId}</span>`;
+      // Check for pending/requested lab analysis
+      if (window.labsManager && window.labsManager.labReports && window.labsManager.labReports.length > 0) {
+        const hasPending = window.labsManager.labReports.some(lab => lab.status === 'pending' || lab.status === 'requested');
+        if (hasPending) {
+          html += ` <span style="margin-left:18px; color:#e67e22; font-weight:600; background:#fffbe6; border-radius:6px; padding:2px 10px; font-size:14px; border:1px solid #ffe0a3;">في انتظار تحليل المختبر</span>`;
+        }
+      }
+      infoBar.innerHTML = html;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Get patientId from query string
+      const urlParams = new URLSearchParams(window.location.search);
+      const patientId = urlParams.get('patientId');
+      window.labsManager = new LabsManager('labsContainer', 'doctor');
+      if (patientId) {
+        window.labsManager.currentPatientId = patientId;
+        // Patch LabsManager to call showPatientInfoBar after loading reports
+        const origLoadLabReports = window.labsManager.loadLabReports.bind(window.labsManager);
+        window.labsManager.loadLabReports = async function() {
+          await origLoadLabReports();
+          // Expose labReports for info bar
+          if (this.labReports && Array.isArray(this.labReports)) {
+            showPatientInfoBar(patientId);
+          }
+        };
+        window.labsManager.loadLabReports();
+      }
+    });
+
+    function logout() {
+      localStorage.clear();
+      window.location.href = '../login.html';
+    }
+  </script>
+</body>
+</html>

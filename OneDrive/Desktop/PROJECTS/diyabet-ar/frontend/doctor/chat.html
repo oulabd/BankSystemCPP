@@ -1,0 +1,76 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <script>
+    const API_BASE_URL = "http://localhost:3001";
+    window.API_BASE = API_BASE_URL + "/api";
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المحادثة - صديقي السكر</title>
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+    <link rel="stylesheet" href="../shared/chat.css">
+    <link rel="stylesheet" href="../assets/css/chat.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="doctor-header">
+        <div class="header-left">
+            <h1>صديقي السكر</h1>
+        </div>
+        <div class="header-right">
+            <a href="chat.html" class="icon-btn" id="chatBtn" aria-label="المحادثة" title="المحادثة مع المرضى">💬</a>
+            <button class="icon-btn" id="logoutBtn" onclick="logout()" aria-label="تسجيل الخروج" title="تسجيل الخروج">🚪</button>
+        </div>
+    </header>
+
+    <main class="doctor-main">
+        <div class="chat-container">
+            <aside class="chat-sidebar">
+                <div class="chat-sidebar-header" style="display: flex; align-items: center; gap: 8px;">
+                    <a href="/doctor/doctor-dashboard.html" class="back-btn-pro" title="العودة للوحة الطبيب">
+                        <i class="fa fa-arrow-right"></i>
+                    </a>
+                    <h2 style="margin: 0;">المرضى</h2>
+                </div>
+                <ul class="chat-contacts" id="patientsList"></ul>
+            </aside>
+            <section class="chat-main">
+                <div class="chat-header" id="chatHeader" style="display:none;">
+                    <button id="backBtn" class="icon-btn" aria-label="عودة">→</button>
+                    <span id="chatPatientName" style="font-weight:bold;"></span>
+                    <button id="closeChatBtn" class="icon-btn" style="margin-left:auto;">إغلاق</button>
+                </div>
+                <div class="chat-messages" id="doctorChatMessages"></div>
+                <div class="chat-input-row" id="chatInputRow" style="display:none;">
+                    <input id="doctorChatInput" class="chat-input" type="text" placeholder="اكتب رسالة...">
+                    <button id="doctorChatSendBtn" class="chat-send-btn"><i class="fa fa-paper-plane"></i></button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="/assets/js/auth-guard.js"></script>
+    <script>protectPage('doctor');</script>
+    <script src="chat.js" defer></script>
+    <script src="../assets/js/main.js"></script>
+    <script>
+        function logout() {
+            const API_BASE = window.API_BASE || window.__API_BASE__ || 'http://localhost:3001';
+            const token = localStorage.getItem('authToken') || localStorage.getItem('auth_token');
+            fetch(`${API_BASE}/auth/logout`, {
+                method: 'POST',
+                headers: { 'Authorization': `Bearer ${token}` }
+            }).catch(err => console.error('Logout error:', err)).finally(() => {
+                localStorage.removeItem('authToken');
+                localStorage.removeItem('auth_token');
+                localStorage.removeItem('token');
+                localStorage.removeItem('userRole');
+                window.location.href = '/login.html';
+            });
+        }
+    </script>
+</body>
+</html>

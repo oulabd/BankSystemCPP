@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <script>
+    const API_BASE_URL = "http://localhost:5000";
+    window.API_BASE = API_BASE_URL + "/api";
+  </script>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>تسجيل الدخول - أنا مصاب بالسكري</title>
+  <link rel="stylesheet" href="assets/css/login.css">
+  <!-- Removed external font-awesome CDN for local dev. Place font-awesome locally if needed. -->
+  
+  <!-- ✅ Set API base IMMEDIATELY before modules load -->
+  <script>
+    // Detect if we're on Live Server (port 5500) and need to point to backend (port 5000)
+    if (location.port && location.port === '5500') {
+      window.API_BASE = window.API_BASE || 'http://localhost:3001';
+    }
+  </script>
+  <script type="module" src="assets/js/login.js" defer></script>
+  <script type="module" src="assets/js/auth.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/passwordToggle.js" defer></script>
+  <link rel="icon" href="data:,">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">أنا مصاب بالسكري</div>
+    <nav>
+      <ul>
+         <li><a href="index.html">الصفحة الرئيسية</a></li>
+         <li><a href="login.html">تسجيل الدخول</a></li>
+         <li><a href="register.html">إنشاء حساب</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main class="auth-page">
+    <section class="form-card">
+      <h1>تسجيل الدخول</h1>
+      <div id="verify-message" style="display:none;color:#27ae60;font-weight:600;margin-bottom:16px;"></div>
+        <script>
+          // Show verify message if redirected from registration
+          document.addEventListener('DOMContentLoaded', function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('verify') === '1') {
+              const msg = document.getElementById('verify-message');
+              if (msg) {
+                msg.style.display = '';
+                msg.textContent = 'تم التسجيل بنجاح! يرجى تأكيد بريدك الإلكتروني ثم تسجيل الدخول.';
+              }
+            }
+          });
+        </script>
+      
+      <form id="login-form">
+        <div class="field">
+          <label for="identifier">البريد الإلكتروني أو رقم الهوية الوطنية</label>
+          <input id="identifier" name="identifier" type="text" placeholder="البريد الإلكتروني أو رقم الهوية الوطنية" required oninvalid="this.setCustomValidity('البريد الإلكتروني أو رقم الهوية الوطنية مطلوب')" oninput="this.setCustomValidity('')">
+          <div class="error" id="identifier-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="password">كلمة المرور</label>
+          <div class="password-field">
+            <input id="password" name="password" type="password" placeholder="كلمة المرور" required oninvalid="this.setCustomValidity('كلمة المرور مطلوبة')" oninput="this.setCustomValidity('')">
+            <button type="button" class="password-toggle" id="password-toggle" aria-label="إظهار كلمة المرور">
+              <i class="fas fa-eye"></i>
+              <span class="password-toggle-label">إظهار</span>
+            </button>
+          </div>
+          <div class="error" id="password-error"></div>
+        </div>
+
+        <div class="row">
+          <label class="checkbox"><input type="checkbox" name="remember"><span>تذكرني</span></label>
+          <a class="link" href="forgot-password.html">هل نسيت كلمة المرور؟</a>
+        </div>
+
+        <div class="form-error" id="form-error"></div>
+
+
+        <button class="btn" type="submit">تسجيل الدخول</button>
+              <button class="btn" id="login-btn" type="submit">
+                <span id="login-btn-text">...</span>
+                <span id="login-spinner" style="display:none;margin-left:8px;"><i class="fas fa-spinner fa-spin"></i></span>
+              </button>
+              <div id="login-progress-message" style="display:none;color:#1e90ff;margin-top:12px;font-size:15px;text-align:center;">جاري تسجيل الدخول... قد يستغرق الدخول الأول بضع ثوانٍ.</div>
+      </form>
+    </section>
+      
+  </main>
+  
+
+  </script>
+</body>
+
+</html>
+

@@ -1,0 +1,352 @@
+@media (max-width: 600px) {
+  .navbar {
+    padding: 10px 14px;
+  }
+
+  .logo {
+    font-size: 20px;
+  }
+
+  .hero {
+    height: 100px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .container {
+    margin: -40px auto 32px;
+    padding: 0 12px;
+  }
+
+  .card {
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+
+  .prescription-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .fields {
+    grid-template-columns: 1fr;
+  }
+
+  .prescription-header h3 {
+    font-size: 15px;
+  }
+
+  .label {
+    font-size: 13px;
+  }
+
+  .value {
+    font-size: 14px;
+  }
+
+  .prescription-actions {
+    flex-direction: column;
+  }
+
+  .modal-content {
+    margin: 10% auto;
+    padding: 16px;
+    max-width: 95%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .navbar {
+    padding: 12px 18px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .hero {
+    height: 110px;
+  }
+
+  .container {
+    margin: -50px auto 36px;
+    padding: 0 14px;
+  }
+
+  .prescription-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .modal-content {
+    max-width: 520px;
+  }
+}
+:root{
+  --turquoise: #20caa8;
+  --bg: #f6fbfb;
+  --card-bg: #ffffff;
+  --muted: #6b7280;
+  --radius: 12px;
+  --shadow: 0 8px 24px rgba(32,202,168,0.10);
+  font-family: 'Inter', system-ui, Arial, sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:#0f172a;font-family:Inter,Arial,sans-serif}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;background:#ffffff}
+.logo{font-weight:700;color:var(--turquoise)}
+.navbar nav ul{display:flex;gap:12px;align-items:center;list-style:none;padding:0;margin:0}
+.navbar a{color:var(--muted);text-decoration:none}
+
+.main-area{min-height:100vh}
+.hero{height:120px;background:linear-gradient(90deg,var(--turquoise),#47e0c0);border-bottom-left-radius:28px;border-bottom-right-radius:28px}
+.container{max-width:1100px;margin:-60px auto 40px;padding:0 16px}
+.card{background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px;margin-bottom:18px}
+.header-card h1{margin:0}
+.subtitle{color:var(--muted);margin-top:8px}
+
+.active-prescriptions .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.pres-card{display:flex;flex-direction:column;gap:12px;padding:14px}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start}
+.card-top h3{margin:0}
+.warn{background:#fff3cd;color:#664d03;padding:6px 8px;border-radius:8px;font-size:13px}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.field{display:flex;flex-direction:column}
+.fields dt{font-size:13px;color:var(--muted)}
+.fields dd{margin:4px 0 0 0;font-weight:600}
+.card-actions{margin-top:auto}
+.btn{border:0;padding:8px 12px;border-radius:8px;cursor:pointer}
+.btn-outline{background:transparent;border:1px solid rgba(15,23,42,0.06)}
+.btn-primary{background:var(--turquoise);color:#fff}
+
+.history-header{display:flex;justify-content:space-between;align-items:center}
+.history-panel{margin-top:12px}
+.history-list{display:flex;flex-direction:column;gap:10px}
+.history-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;background:#f8fffb}
+.history-meta{display:flex;flex-direction:column}
+.status{padding:6px 8px;border-radius:8px;font-weight:600}
+.status.expired{background:#fff5f5;color:#b91c1c}
+.status.active{background:#f0fff8;color:#027a48}
+.status.replaced{background:#fff7ed;color:#92400e}
+.history-actions{display:flex;gap:8px;margin-top:12px}
+
+/* Electronic Prescriptions */
+.prescription-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.prescription-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.prescription-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  font-weight: 700;
+  color: white;
+  font-size: 28px;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
+.prescription-header h3 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.type {
+  background: var(--turquoise);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.prescription-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.value {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.prescription-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+}
+
+/* Print styles */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-target, .print-target * {
+    visibility: visible;
+  }
+  .print-target {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    max-width: 600px;
+  }
+  .prescription-actions {
+    display: none;
+  }
+}
+
+.prescription-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.prescription-header h3 {
+  margin: 0;
+  color: #0f172a;
+}
+
+.status {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status.valid {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.status.expired {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+/* responsive */
+@media (max-width:799px){
+  .fields{grid-template-columns:1fr}
+}
+
+/* print rules */
+@media print{
+  body{background:#fff}
+  .navbar,.hero,.btn{display:none}
+  .card{box-shadow:none;border-radius:0}
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: black;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.item-group {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.item-group .remove-item {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+.add-item-btn {
+  background: var(--turquoise);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.add-item-btn:hover {
+  background: #1a9b7a;
+}

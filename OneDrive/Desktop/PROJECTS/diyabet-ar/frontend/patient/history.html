@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>سجل القياسات</title>
+
+  <!-- Shared Styles -->
+  <link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+  <link rel="stylesheet" href="../assets/css/history.css">
+
+  <link rel="stylesheet" href="../assets/css/search.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    .flatpickr-current-month,
+    .flatpickr-monthDropdown-months,
+    .flatpickr-monthDropdown-years,
+    .flatpickr-monthDropdown-month,
+    .flatpickr-monthDropdown-year,
+    .flatpickr-months .flatpickr-month {
+      font-family: Arial, Helvetica, 'Liberation Sans', 'DejaVu Sans', sans-serif !important;
+      font-variant-numeric: normal !important;
+      direction: ltr !important;
+    }
+    /* Force Western numerals in Flatpickr input fields */
+    input.flatpickr-input, input[type="text"].flatpickr-input {
+      font-family: Arial, Helvetica, 'Liberation Sans', 'DejaVu Sans', sans-serif !important;
+      font-variant-numeric: normal !important;
+      direction: ltr !important;
+      unicode-bidi: plaintext !important;
+    }
+  </style>
+
+  <!-- Flatpickr CSS/JS for Arabic date picker -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ar.js"></script>
+
+  <!-- Global JS + Page JS -->
+
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/auth-guard.js" defer></script>
+    <script src="../assets/js/search.js" defer></script>
+  <script type="module" src="../assets/js/history.js"></script>
+  <script src="settings.js" defer></script>
+</head>
+
+<body>
+
+  <!-- HEADER (shared) -->
+  <header class="pd-header">
+    <div class="pd-header-inner">
+      <div class="pd-left">
+        <a href="/" class="logo">صديقي السكر</a>
+      </div>
+      <div class="pd-center">
+        <button class="icon-btn search-btn" aria-label="بحث">🔍</button>
+      </div>
+      <div class="pd-right">
+        <button class="icon-btn chat-btn" id="chatBtn" aria-label="محادثة" title="محادثة مع الطبيب">💬</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN LAYOUT (from dashboard) -->
+  <main class="pd-main">
+
+    <!-- SIDEBAR (static menu) -->
+    <aside class="pd-sidebar">
+      <nav class="pd-nav" aria-label="Patient navigation">
+        <ul>
+          <li data-nav="daily"><span class="mc-icon">🩺</span> <span class="mc-title">القياسات اليومية</span></li>
+          <li data-nav="history" class="active"><span class="mc-icon">📄</span> <span class="mc-title">سجل القياسات والطباعة</span></li>
+          <li data-nav="appointments"><span class="mc-icon">📅</span> <span class="mc-title">المواعيد</span></li>
+          <li data-nav="prescriptions"><span class="mc-icon">💊</span> <span class="mc-title">الوصفات</span></li>
+          <li data-nav="labs"><span class="mc-icon">🔬</span> <span class="mc-title">المختبر</span></li>
+          <li data-nav="carb"><span class="mc-icon">🍞</span> <span class="mc-title">حاسبة الكربوهيدرات</span></li>
+          <li data-nav="personal-settings">
+            <span class="mc-icon">⚙️</span>
+            <span class="mc-title">الإعدادات الشخصية</span>
+          </li>
+        </ul>
+      </nav>
+      <div style="margin-top:32px;text-align:center;">
+        <button type="button" class="btn btn-outline" id="logoutBtn" style="min-width:120px;font-size:1rem;padding:10px 24px;border-radius:8px;">تسجيل الخروج</button>
+      </div>
+    </aside>
+
+    <!-- PAGE CONTENT -->
+    <section class="pd-content">
+
+      <div class="card filter-card">
+        <h1>سجل القياسات</h1>
+
+        <form id="filter-form" class="filters">
+          <div class="field">
+            <label for="start">تاريخ البداية</label>
+            <input id="start" name="start" type="text" placeholder="اختر التاريخ" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="end">تاريخ النهاية</label>
+            <input id="end" name="end" type="text" placeholder="اختر التاريخ" autocomplete="off">
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn btn-primary">تطبيق</button>
+            <button type="button" id="btn-clear" class="btn">مسح</button>
+            <button type="button" id="btn-print" class="btn btn-outline">طباعة</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Measurements Section -->
+      <div class="card results-card" id="measurements-section">
+        <div class="results-header">
+          <h2>القياسات السابقة</h2>
+          <div class="results-meta">
+            <span id="results-count">0</span>
+            <span>سجل موجود</span>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table id="records-table" class="records-table" aria-describedby="no-results">
+            <thead>
+              <tr>
+                <th>اليوم</th>
+                <th>صائم</th>
+                <th>قبل الإفطار</th>
+                <th>بعد الإفطار</th>
+                <th>كارب. الإفطار (جم)</th>
+                <th>أنسولين الإفطار (وحدة)</th>
+                <th>وجبة خفيفة 1</th>
+                <th>قبل الغداء</th>
+                <th>بعد الغداء</th>
+                <th>كارب. الغداء (جم)</th>
+                <th>أنسولين الغداء (وحدة)</th>
+                <th>وجبة خفيفة 2</th>
+                <th>قبل العشاء</th>
+                <th>بعد العشاء</th>
+                <th>كارب. العشاء (جم)</th>
+                <th>أنسولين العشاء (وحدة)</th>
+                <th>وجبة خفيفة 3</th>
+                <th>لانتوس (وحدة)</th>
+                <th>قياس 00:00</th>
+                <th>قياس 03:00</th>
+                <th>ملاحظات</th>
+                <th>إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="records-tbody"></tbody>
+                    <tbody id="records-tbody">
+                     
+                    </tbody>
+          </table>
+        </div>
+        <div id="records-cards" class="cards-grid"></div>
+        <div id="no-results" class="no-results" hidden>لم يتم العثور على قياسات</div>
+        <template id="tpl-confirm-delete">هل أنت متأكد من رغبتك في حذف هذا السجل؟</template>
+
+        <!-- All Doctor Notes Section -->
+        <div id="all-doctor-notes" class="card" style="margin-top:32px; display:none;">
+          <h2>جميع ملاحظات الطبيب</h2>
+          <ul id="doctor-notes-list" style="padding-left:18px;"></ul>
+        </div>
+      </div>
+
+      <!-- Doctor Comments Section removed -->
+
+    </section>
+  </main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.flatpickr) {
+      flatpickr("#start", { dateFormat: "Y-m-d", locale: "ar" });
+      flatpickr("#end", { dateFormat: "Y-m-d", locale: "ar" });
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+Deleted: doctor-medical-logs.js

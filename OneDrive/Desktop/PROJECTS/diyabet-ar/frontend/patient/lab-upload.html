@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المريض - رفع المختبر</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>نتائج المختبر</h1>
+            <button id="backBtn">عودة</button>
+        </header>
+        <main>
+            <div id="labRequests"></div>
+        </main>
+    </div>
+    <script src="lab-upload.js"></script>
+</body>
+</html>

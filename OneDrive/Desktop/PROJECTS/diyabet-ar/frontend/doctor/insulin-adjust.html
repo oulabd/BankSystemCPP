@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL;
+</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تعديل الأنسولين - صديقي السكر</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+    
+</head>
+<body>
+    <div class="container">
+        <header class="doctor-header">
+            <h1>تعديل الأنسولين</h1>
+            <div class="header-right">
+                <button id="backBtn" class="back-btn">العودة</button>
+            </div>
+        </header>
+        <main>
+            <form id="insulinForm">
+                <div class="form-group">
+                    <label for="type">نوع الأنسولين:</label>
+                    <select id="type" name="type" required>
+                        <option value="short">سريع المفعول</option>
+                        <option value="long">طويل المفعول</option>
+                        <option value="mixed">مختلط</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dose">الجرعة (وحدة):</label>
+                    <input type="number" id="dose" name="dose" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="reason">سبب التعديل:</label>
+                    <select id="reason" name="reason">
+                        <option value="high fasting">ارتفاع الجلوكوز الصائم</option>
+                        <option value="high post-meal">ارتفاع الجلوكوز بعد الوجبة</option>
+                        <option value="abnormal HbA1c">HbA1c غير طبيعي</option>
+                        <option value="other">أخرى</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="notes">ملاحظات:</label>
+                    <textarea id="notes" name="notes" rows="4"></textarea>
+                </div>
+                <button type="submit">حفظ</button>
+            </form>
+        </main>
+    </div>
+    
+    <script src="insulin-adjust.js"></script>
+</body>
+</html>

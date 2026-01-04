@@ -1,0 +1,265 @@
+@media (max-width: 600px) {
+
+  .search-modal.active {
+    padding-top: 20px;
+  }
+
+  .search-modal-content {
+    width: 95%;
+    max-width: none;
+    border-radius: 6px;
+  }
+
+  .search-modal-header {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .search-input {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .search-close-btn {
+    font-size: 22px;
+    min-width: 36px;
+    height: 36px;
+  }
+
+  .search-results {
+    padding: 12px;
+  }
+
+  .search-controls {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .search-nav-btn {
+    flex: 1;
+    min-width: 100px;
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .result-count {
+    font-size: 13px;
+  }
+}
+@media (min-width: 601px) and (max-width: 1024px) {
+
+  .search-modal.active {
+    padding-top: 30px;
+  }
+
+  .search-modal-content {
+    width: 92%;
+    max-width: 520px;
+  }
+
+  .search-modal-header {
+    padding: 14px;
+  }
+
+  .search-input {
+    font-size: 15px;
+  }
+
+  .search-results {
+    padding: 14px;
+  }
+
+  .search-nav-btn {
+    font-size: 14px;
+    padding: 8px 14px;
+  }
+}
+/* Search Modal Styles */
+.search-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.search-modal.active {
+  display: flex;
+  opacity: 1;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 50px;
+}
+
+.search-modal-content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 600px;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.search-modal-header {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+  align-items: center;
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.search-input:focus {
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.search-close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0 5px;
+  color: #666;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 4px;
+}
+
+.search-close-btn:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.search-results {
+  padding: 15px;
+}
+
+.search-status {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+  min-height: 20px;
+}
+
+.search-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.search-nav-btn {
+  padding: 8px 15px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.search-nav-btn:hover {
+  background-color: #4CAF50;
+  color: white;
+  border-color: #4CAF50;
+}
+
+.search-nav-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.result-count {
+  font-size: 14px;
+  color: #666;
+  font-weight: 500;
+  min-width: 60px;
+  text-align: center;
+}
+
+/* Highlight styles */
+.search-highlight {
+  background-color: #fff3cd;
+  color: #000;
+  padding: 2px 4px;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.search-highlight.active {
+  background-color: #ffc107;
+  box-shadow: 0 0 0 2px rgba(255, 193, 7, 0.5);
+  font-weight: 500;
+}
+
+.search-highlight.flash {
+  animation: search-flash 0.8s ease;
+}
+
+@keyframes search-flash {
+  0% { box-shadow: 0 0 0 0 rgba(32, 202, 168, 0.6); }
+  50% { box-shadow: 0 0 0 6px rgba(32, 202, 168, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(32, 202, 168, 0); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .search-modal-content {
+    width: 95%;
+    max-width: none;
+  }
+
+  .search-modal.active {
+    padding-top: 20px;
+  }
+
+  .search-modal-header {
+    flex-direction: column;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .search-controls {
+    flex-wrap: wrap;
+  }
+
+  .search-nav-btn {
+    flex: 1;
+    min-width: 100px;
+  }
+}

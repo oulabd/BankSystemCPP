@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <script>
+    window.API_BASE = "/api";
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة الإدارة - صديقي السكر</title>
+  <!-- Removed external font-awesome CDN for local dev. Place font-awesome locally if needed. -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="admin-wrapper">
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="القائمة">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="logo">صديقي السكر</div>
+      <nav class="nav-menu">
+        <a href="#doctors" class="nav-item active" data-tab="doctors">
+          <i class="fas fa-user-md"></i>
+          <span>الأطباء</span>
+        </a>
+        <a href="#patients" class="nav-item" data-tab="patients">
+          <i class="fas fa-users"></i>
+          <span>المرضى</span>
+        </a>
+        <a href="#users" class="nav-item" data-tab="users">
+          <i class="fas fa-user-cog"></i>
+          <span>كل المستخدمين</span>
+        </a>
+        <a href="#" class="nav-item" id="logoutBtn">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>تسجيل الخروج</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="top-bar">
+        <h1>لوحة الإدارة</h1>
+      </header>
+
+      <!-- Doctors Tab -->
+      <section id="doctors-tab" class="tab-content active">
+        <div class="section-header">
+          <h2>إدارة الأطباء</h2>
+          <button class="btn-primary" id="showAddDoctorBtn">
+            <i class="fas fa-plus"></i>
+            <span>إضافة طبيب</span>
+          </button>
+        </div>
+
+        <!-- Doktor Ekleme Formu -->
+        <div class="card" id="addDoctorForm" style="display:none;">
+          <h3>إضافة طبيب جديد</h3>
+          <form id="doctorForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label>الاسم الكامل</label>
+                <input type="text" id="doctorName" required>
+              </div>
+              <div class="form-group">
+                <label>البريد الإلكتروني</label>
+                <input type="email" id="doctorEmail" required>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>الهاتف</label>
+                <input type="tel" id="doctorPhone">
+              </div>
+              <div class="form-group">
+                <label>رقم الهوية</label>
+                <input type="text" id="doctorNationalId">
+              </div>
+            </div>
+            <div class="form-group">
+              <label>كلمة المرور</label>
+              <input type="password" id="doctorPassword" required minlength="6">
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-primary">
+                <span>إنشاء</span>
+              </button>
+              <button type="button" class="btn-secondary" id="cancelDoctorBtn">
+                <span>إلغاء</span>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Doktorlar Listesi -->
+        <div class="doctors-grid" id="doctorsList"></div>
+      </section>
+
+      <!-- Patients Tab -->
+      <section id="patients-tab" class="tab-content">
+        <div class="section-header">
+          <h2>إدارة المرضى</h2>
+        </div>
+        <div class="patients-grid" id="patientsList"></div>
+      </section>
+
+      <!-- Users Tab -->
+      <section id="users-tab" class="tab-content">
+        <div class="section-header">
+          <h2>كل المستخدمين</h2>
+        </div>
+        <div class="users-grid" id="usersList"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL;
+</script>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>الوصفات</title>
+
+    <!-- Shared Styles -->
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/prescriptions.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- JS -->
+    
+    <script src="../assets/js/main.js" defer></script>
+    <script src="prescriptions-doctor.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="doctor-header">
+      <div class="header-left">
+        <h1>صديقي السكري</h1>
+      </div>
+      <div class="header-right">
+        <a href="chat.html" class="icon-btn" id="chatBtn" aria-label="محادثة" title="محادثة مع المرضى">💬</a>
+        <button class="icon-btn" id="logoutBtn" onclick="logout()" aria-label="تسجيل الخروج" title="تسجيل الخروج">🚪</button>
+      </div>
+    </header>
+
+    <main class="doctor-main">
+
+      <!-- Sidebar -->
+      <aside class="doctor-sidebar">
+        <ul class="doctor-menu">
+          <li><a href="doctor-dashboard.html">المرضى</a></li>
+          <li><a href="prescriptions-doctor.html">الوصفات</a></li>
+          <li><a href="labs.html">المختبر</a></li>
+
+          <li class="logout">
+            <button onclick="logout()">تسجيل الخروج</button>
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Content -->
+      <section class="pd-content">
+
+        <div class="card title-card">
+          <h1>الوصفات</h1>
+          <button id="createBtn" class="btn btn-primary">وصفة جديدة</button>
+        </div>
+
+        <!-- Prescriptions List -->
+        <div class="card prescriptions-card">
+          <div class="prescriptions-header">
+            <h2>سجل الوصفات</h2>
+          </div>
+
+          <div id="prescriptions-list" class="table-wrap">
+            <!-- Prescriptions will be rendered here -->
+          </div>
+
+          <div id="no-prescriptions" class="no-results">لم يتم العثور على وصفات</div>
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- Create Prescription Modal -->
+    <div id="createModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>وصفة جديدة</h2>
+        <form id="prescriptionForm">
+          <div class="form-group">
+            <label for="patientSelect">المريض:</label>
+            <select id="patientSelect" required>
+              <option value="">اختر المريض</option>
+            </select>
+          </div>
+          <div id="itemsContainer">
+            <div class="item-group">
+              <label>دواء/منتج:</label>
+              <input type="text" class="item-name" placeholder="مثال: لانتوس" required>
+              <input type="text" class="item-dose" placeholder="مثال: 12 وحدة صباحاً" required>
+              <input type="text" class="item-frequency" placeholder="مثال: يومياً" required>
+              <select class="item-type" required>
+                <option value="medication">دواء</option>
+                <option value="insulin">أنسولين</option>
+                <option value="sensor">جهاز استشعار</option>
+                <option value="device">جهاز</option>
+              </select>
+              <button type="button" class="remove-item">إزالة</button>
+            </div>
+          </div>
+          <button type="button" id="addItemBtn">إضافة منتج</button>
+          <div class="form-group">
+            <label for="notes">ملاحظات:</label>
+            <textarea id="notes" rows="3"></textarea>
+          </div>
+          <button type="submit">حفظ</button>
+        </form>
+      </div>
+    </div>
+
+</body>
+</html>

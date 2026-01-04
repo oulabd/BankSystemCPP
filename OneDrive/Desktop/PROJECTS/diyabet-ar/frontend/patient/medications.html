@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İlaçlar - DİYABETLİYİM</title>
+  <link rel="stylesheet" href="/shared/medication.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div id="medicationContainer"></div>
+  
+  <script src="/shared/medication.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      medicationManager = new MedicationManager('medicationContainer', 'patient');
+    });
+  </script>
+</body>
+</html>

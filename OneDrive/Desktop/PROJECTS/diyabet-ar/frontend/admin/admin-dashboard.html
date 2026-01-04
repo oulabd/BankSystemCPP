@@ -1,0 +1,39 @@
+<!-- Dil değiştirici kaldırıldı -->
+<script>
+  const API_BASE_URL = "http://localhost:3001";
+  window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+<h1>لوحة الإدارة</h1>
+<nav>
+  <ul>
+    <li>الأطباء</li>
+    <li>المرضى</li>
+    <li>جميع المستخدمين</li>
+    <li>تسجيل الخروج</li>
+  </ul>
+</nav>
+<main>
+  <section>
+    <h2>إدارة المرضى</h2>
+    <button>إضافة طبيب</button>
+    <button>تعيين طبيب</button>
+    <table>
+      <thead>
+        <tr>
+          <th>الاسم الكامل</th>
+          <th>البريد الإلكتروني</th>
+          <th>الطبيب المعين</th>
+          <th>الإجراءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Dinamik içerik buraya gelecek -->
+      </tbody>
+    </table>
+  </section>
+</main>
+<footer>
+  <p>© 2025 صديقي السكر</p>
+</footer>
+<script src="/assets/js/auth-guard.js"></script>

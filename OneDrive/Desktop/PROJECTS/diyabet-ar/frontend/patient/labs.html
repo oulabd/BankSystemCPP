@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+	<meta charset="utf-8">
+	<script>
+const API_BASE_URL = "http://localhost:3001";
+	window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>نتائج مختبري - صديقي السكر</title>
+	<link rel="stylesheet" href="../assets/css/patient-dashboard.css">
+	<link rel="stylesheet" href="../assets/css/search.css">
+	<link rel="stylesheet" href="../assets/css/history.css">
+	<link rel="stylesheet" href="../shared/labs.css">
+</head>
+<body>
+	<div id="labs-toast" style="display:none;position:fixed;top:32px;left:50%;transform:translateX(-50%);z-index:9999;min-width:240px;max-width:90vw;padding:16px 32px;background:#20caa8;color:#fff;font-weight:600;font-size:1.1em;border-radius:12px;box-shadow:0 4px 24px rgba(32,202,168,0.15);text-align:center;transition:opacity 0.3s;pointer-events:none;"></div>
+	<header class="pd-header">
+		<div class="pd-header-inner">
+			<div class="pd-left">
+				<a href="/" class="logo">صديقي السكر</a>
+			</div>
+			<div class="pd-center">
+				<button class="icon-btn search-btn" aria-label="بحث">🔍</button>
+			</div>
+			<div class="pd-right">
+				<button class="icon-btn chat-btn" id="chatBtn" aria-label="محادثة" title="محادثة الطبيب">💬</button>
+			</div>
+		</div>
+	</header>
+
+	<main class="pd-main">
+		<section class="pd-sidebar">
+			<nav class="pd-nav" aria-label="تنقل المريض">
+				<ul>
+					<li data-nav="daily"><span class="mc-icon">🩺</span> <span class="mc-title">القياسات اليومية</span></li>
+					<li data-nav="history"><span class="mc-icon">📄</span> <span class="mc-title">سجل القياسات &amp; طباعة</span></li>
+					<li data-nav="appointments"><span class="mc-icon">📅</span> <span class="mc-title">مواعيدي</span></li>
+					<li data-nav="prescriptions"><span class="mc-icon">💊</span> <span class="mc-title">وصفاتي الطبية</span></li>
+					<li data-nav="labs" class="active"><span class="mc-icon">🔬</span> <span class="mc-title">نتائج مختبري</span></li>
+					<li data-nav="carb"><span class="mc-icon">🍞</span> <span class="mc-title">حاسبة الكربوهيدرات</span></li>
+					<li data-nav="personal-settings">
+						<span class="mc-icon">⚙️</span>
+						<span class="mc-title">الإعدادات الشخصية</span>
+					</li>
+				</ul>
+			</nav>
+			<div style="margin-top:32px;text-align:center;">
+							<button type="button" class="btn btn-outline" id="logoutBtn" style="min-width:120px;font-size:1rem;padding:10px 24px;border-radius:8px;">تسجيل الخروج</button>
+						</div>
+		</section>
+
+		<section class="pd-content">
+			<div id="labsContainer">
+			</div>
+				</div>
+		</section>
+	</main>
+
+
+		<script src="../assets/js/main.js" defer></script>
+		<script src="../assets/js/auth-guard.js" defer></script>
+		<script src="../assets/js/search.js" defer></script>
+		<script src="../assets/js/patient-dashboard.js" defer></script>
+		<script src="settings.js" defer></script>
+
+		<script src="../shared/labs.js" defer></script>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function() {
+				// Instantiate LabsManager and attach to window for button handlers
+				window.labsManager = new LabsManager();
+				// Set the container to the labsContainer div
+				window.labsManager.container = document.getElementById('labsContainer');
+				// Optionally set userRole if needed (default patient)
+				window.labsManager.userRole = 'patient';
+				// Load lab reports
+				window.labsManager.loadLabReports();
+			});
+		</script>

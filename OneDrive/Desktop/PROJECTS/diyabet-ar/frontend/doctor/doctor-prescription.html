@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <script>
+const API_BASE_URL = "http://localhost:3001";
+window.API_BASE = API_BASE_URL + "/api";
+</script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إنشاء وصفة - صديقي السكر</title>
+    <link rel="stylesheet" href="../assets/css/doctor-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/chat.css">
+</head>
+<body>
+    <header class="doctor-header">
+        <h1>إنشاء وصفة</h1>
+        <div class="header-right">
+            <a href="/doctor/doctor-dashboard.html" class="back-btn-pro" title="العودة">
+                <i class="fa fa-arrow-left"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="doctor-main">
+        <form id="prescriptionForm" class="card">
+            <div class="form-row">
+                <label>نوع الدواء:</label>
+                <select id="type" required>
+                    <option value="insulin_long">أنسولين طويل المفعول</option>
+                    <option value="insulin_fast">أنسولين سريع المفعول</option>
+                    <option value="sensor">مستشعر الجلوكوز</option>
+                    <option value="drug">دواء آخر</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <label>اسم الدواء:</label>
+                <input type="text" id="name" required>
+            </div>
+
+            <div class="form-row">
+                <label>الجرعة:</label>
+                <input type="text" id="dose" required>
+            </div>
+
+            <div class="form-row">
+                <label>التكرار:</label>
+                <input type="text" id="frequency" required>
+            </div>
+
+            <div class="form-row">
+                <label>المدة:</label>
+                <input type="text" id="duration" required>
+            </div>
+
+            <div class="form-row">
+                <label>ملاحظات:</label>
+                <textarea id="notes" rows="3"></textarea>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit">إنشاء وصفة</button>
+            </div>
+        </form>
+    </main>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="/assets/js/auth-guard.js"></script>
+    <script>protectPage('doctor');</script>
+    
+    <script src="doctor-prescription.js"></script>
+</body>
+</html>

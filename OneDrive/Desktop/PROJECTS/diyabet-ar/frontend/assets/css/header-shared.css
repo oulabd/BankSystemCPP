@@ -1,0 +1,190 @@
+@media (max-width: 600px) {
+  .back-btn-pro {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    margin-right: 4px;
+  }
+
+  .back-btn-pro i {
+    font-size: 15px;
+  }
+
+  .chat-container {
+    height: calc(100vh - 80px);
+    min-width: 0;
+    margin: 16px 8px 0;
+    border-radius: 10px;
+  }
+
+  .chat-sidebar {
+    display: none;
+  }
+
+  .chat-header {
+    padding: 8px 12px;
+    font-size: 15px;
+  }
+
+  .chat-messages {
+    padding: 12px 10px;
+  }
+
+  .chat-message {
+    max-width: 85%;
+    margin-bottom: 14px;
+  }
+
+  .chat-bubble {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .chat-input-row {
+    padding: 8px 10px;
+  }
+
+  .chat-input {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  .chat-send-btn {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .back-btn-pro {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+  }
+
+  .back-btn-pro i {
+    font-size: 16px;
+  }
+
+  .chat-container {
+    height: 70vh;
+    min-width: 0;
+    margin: 24px auto 0;
+    border-radius: 12px;
+  }
+
+  .chat-sidebar {
+    width: 220px;
+  }
+
+  .chat-header {
+    padding: 10px 14px;
+    font-size: 16px;
+  }
+
+  .chat-message {
+    max-width: 75%;
+  }
+
+  .chat-bubble {
+    font-size: 15px;
+  }
+
+  .chat-send-btn {
+    padding: 9px 18px;
+    font-size: 15px;
+  }
+}
+@media (max-width: 600px) {
+  .pd-header {
+    padding: 12px 16px;
+  }
+
+  .pd-header-inner {
+    gap: 10px;
+  }
+
+  .logo {
+    font-size: 15px;
+  }
+
+  .pd-header .header-nav a {
+    margin-left: 8px;
+    font-size: 14px;
+  }
+
+  .icon-btn {
+    font-size: 16px;
+    padding: 5px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .pd-header {
+    padding: 16px 20px;
+  }
+
+  .logo {
+    font-size: 17px;
+  }
+
+  .pd-header .header-nav a {
+    margin-left: 10px;
+    font-size: 15px;
+  }
+
+  .icon-btn {
+    font-size: 17px;
+    padding: 6px;
+  }
+}
+/* ===== DASHBOARD HEADER MATCH HISTORY ===== */
+
+.pd-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:18px 24px;
+  background:linear-gradient(90deg, #ffffff 0%, #f7fffd 100%);
+  box-shadow:0 1px 0 rgba(0,0,0,0.04);
+}
+
+.pd-header-inner{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-weight:700;
+  color:#20caa8;
+  font-size:18px;
+  text-decoration:none;
+}
+
+.pd-header .header-nav a{
+  margin-left:12px;
+  color:#6b7280;
+  text-decoration:none;
+}
+
+.pd-header .header-nav a:hover{
+  color:#20caa8;
+}
+
+/* icons */
+.icon-btn{
+  background:transparent;
+  border:none;
+  color:#6b7280;
+  font-size:18px;
+  padding:6px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.icon-btn:hover{
+  background:#e6fffa;
+  color:#20caa8;
+}
